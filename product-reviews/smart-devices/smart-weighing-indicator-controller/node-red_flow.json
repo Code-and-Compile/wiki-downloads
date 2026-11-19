@@ -1,0 +1,1107 @@
+[
+    {
+        "id": "1631f3f6c53a7ab6",
+        "type": "tab",
+        "label": "IND360 MQTT",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "3524fbfbe0e8aace",
+        "type": "comment",
+        "z": "1631f3f6c53a7ab6",
+        "name": "Subscribe",
+        "info": "",
+        "x": 120,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "d149f3033259f1ef",
+        "type": "comment",
+        "z": "1631f3f6c53a7ab6",
+        "name": "Publish",
+        "info": "",
+        "x": 110,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "388dd012c9442d17",
+        "type": "function",
+        "z": "1631f3f6c53a7ab6",
+        "name": "function 20",
+        "func": "msg.payload =\n{\n  \"$correlation\": \"Tare-PresetTest1\",\n  \"$ttl\": 42,\n  \"responseTopic\": null,\n  \"command\": \"tare-preset\",\n  \"content\": {\n    \"value\": String(msg.payload),\n    \"uomCode\": \"kg\"\n  }\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 940,
+        "wires": [
+            [
+                "8fa27ad278e631ae"
+            ]
+        ]
+    },
+    {
+        "id": "71da4e7f11604f18",
+        "type": "ui-gauge",
+        "z": "1631f3f6c53a7ab6",
+        "name": "",
+        "group": "b68a10838e41fe85",
+        "order": 1,
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Net Weight",
+        "units": "kg",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0.0",
+                "color": "#f57575"
+            },
+            {
+                "from": "1.0",
+                "color": "#ffc800"
+            },
+            {
+                "from": "2.0",
+                "color": "#94ffa0"
+            }
+        ],
+        "min": 0,
+        "max": "3",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 820,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "ed18d4d063d9504e",
+        "type": "function",
+        "z": "1631f3f6c53a7ab6",
+        "name": "function 21",
+        "func": "msg.payload = msg.payload[0].gross + ' ' + msg.payload[0].uomCode;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 340,
+        "wires": [
+            [
+                "671254b0d5beaa12"
+            ]
+        ]
+    },
+    {
+        "id": "66d1568f0fe34a01",
+        "type": "function",
+        "z": "1631f3f6c53a7ab6",
+        "name": "function 22",
+        "func": "msg.payload = msg.payload[0].net;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 380,
+        "wires": [
+            [
+                "71da4e7f11604f18"
+            ]
+        ]
+    },
+    {
+        "id": "6aab67cb2a967ba2",
+        "type": "function",
+        "z": "1631f3f6c53a7ab6",
+        "name": "function 23",
+        "func": "msg.payload = msg.payload[0].tare + ' ' + msg.payload[0].uomCode;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 420,
+        "wires": [
+            [
+                "993010a42dd89d64"
+            ]
+        ]
+    },
+    {
+        "id": "671254b0d5beaa12",
+        "type": "ui-text",
+        "z": "1631f3f6c53a7ab6",
+        "group": "a4a82a723e2f0305",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Gross Weight",
+        "label": "Gross Weight",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "x": 830,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "993010a42dd89d64",
+        "type": "ui-text",
+        "z": "1631f3f6c53a7ab6",
+        "group": "b68a10838e41fe85",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Tare",
+        "label": "Tare value",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "x": 810,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "f4d1873bbf2d13c2",
+        "type": "ui-button",
+        "z": "1631f3f6c53a7ab6",
+        "group": "b68a10838e41fe85",
+        "name": "Set Tare",
+        "label": "Set Tare",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "green",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 120,
+        "y": 600,
+        "wires": [
+            [
+                "5be2c97beeb0fe60"
+            ]
+        ]
+    },
+    {
+        "id": "c4b198d2cf8339a9",
+        "type": "ui-button",
+        "z": "1631f3f6c53a7ab6",
+        "group": "b68a10838e41fe85",
+        "name": "Clear Tare",
+        "label": "Clear Tare",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "red",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 130,
+        "y": 760,
+        "wires": [
+            [
+                "1e1d13c71560ba20"
+            ]
+        ]
+    },
+    {
+        "id": "af928824e68800b2",
+        "type": "ui-number-input",
+        "z": "1631f3f6c53a7ab6",
+        "group": "b68a10838e41fe85",
+        "name": "Set Preset Tare",
+        "label": "Set Preset Tare",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": 10,
+        "step": "0.1",
+        "tooltip": "",
+        "passthru": true,
+        "sendOnBlur": false,
+        "sendOnEnter": true,
+        "className": "",
+        "clearable": false,
+        "icon": "",
+        "iconPosition": "left",
+        "iconInnerPosition": "inside",
+        "spinner": "default",
+        "x": 140,
+        "y": 940,
+        "wires": [
+            [
+                "388dd012c9442d17"
+            ]
+        ]
+    },
+    {
+        "id": "f932857160e15a95",
+        "type": "ui-button",
+        "z": "1631f3f6c53a7ab6",
+        "group": "b68a10838e41fe85",
+        "name": "Zero the scale",
+        "label": "Zero scale",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "orange",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 140,
+        "y": 1100,
+        "wires": [
+            [
+                "b1c0211859552492"
+            ]
+        ]
+    },
+    {
+        "id": "4a55b4ed8a630a61",
+        "type": "mqtt in",
+        "z": "1631f3f6c53a7ab6",
+        "name": "",
+        "topic": "ind360/devices/C249346600",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "b8a32fa32f76da74",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 100,
+        "wires": [
+            [
+                "bd5aca6ba89267a5"
+            ]
+        ]
+    },
+    {
+        "id": "bd5aca6ba89267a5",
+        "type": "debug",
+        "z": "1631f3f6c53a7ab6",
+        "name": "debug 29",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "dcd0db03a8692e40",
+        "type": "mqtt in",
+        "z": "1631f3f6c53a7ab6",
+        "name": "",
+        "topic": "ind360/devices/C249346600/alarms",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "bdfcf8fab0b3a3bf",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 200,
+        "y": 160,
+        "wires": [
+            [
+                "5c4021bff8132ccd"
+            ]
+        ]
+    },
+    {
+        "id": "5c4021bff8132ccd",
+        "type": "debug",
+        "z": "1631f3f6c53a7ab6",
+        "name": "debug 34",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "a9e618b1afacaa7c",
+        "type": "mqtt in",
+        "z": "1631f3f6c53a7ab6",
+        "name": "",
+        "topic": "ind360/devices/C249346600/scales/_",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "bdfcf8fab0b3a3bf",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 210,
+        "y": 220,
+        "wires": [
+            [
+                "007d8ef681a249b1"
+            ]
+        ]
+    },
+    {
+        "id": "007d8ef681a249b1",
+        "type": "debug",
+        "z": "1631f3f6c53a7ab6",
+        "name": "debug 35",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "0be5996b7db189ae",
+        "type": "mqtt in",
+        "z": "1631f3f6c53a7ab6",
+        "name": "",
+        "topic": "ind360/devices/C249346600/scales/_/measurements",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "bdfcf8fab0b3a3bf",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 250,
+        "y": 280,
+        "wires": [
+            [
+                "f55ca0cf80f907ab",
+                "ed18d4d063d9504e",
+                "66d1568f0fe34a01",
+                "6aab67cb2a967ba2"
+            ]
+        ]
+    },
+    {
+        "id": "f55ca0cf80f907ab",
+        "type": "debug",
+        "z": "1631f3f6c53a7ab6",
+        "name": "debug 36",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "5f31ac9e6a66840e",
+        "type": "comment",
+        "z": "1631f3f6c53a7ab6",
+        "name": "Tare scale",
+        "info": "",
+        "x": 120,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "36591bdc4827871a",
+        "type": "mqtt out",
+        "z": "1631f3f6c53a7ab6",
+        "name": "",
+        "topic": "ind360/devices/C249346600/commands/tare/invoke",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "bdfcf8fab0b3a3bf",
+        "x": 770,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "5be2c97beeb0fe60",
+        "type": "function",
+        "z": "1631f3f6c53a7ab6",
+        "name": "function 17",
+        "func": "msg.payload =\n{\n    \"$correlation\": \"TareTest1\",\n    \"$ttl\": 42,\n    \"responseTopic\": null,\n    \"command\": \"tare\",\n    \"content\" : null\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 600,
+        "wires": [
+            [
+                "36591bdc4827871a"
+            ]
+        ]
+    },
+    {
+        "id": "b848dd1920a0913f",
+        "type": "mqtt in",
+        "z": "1631f3f6c53a7ab6",
+        "name": "",
+        "topic": "ind360/devices/C249346600/commands/tare/result",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "bdfcf8fab0b3a3bf",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 250,
+        "y": 660,
+        "wires": [
+            [
+                "b889c06211696a6b"
+            ]
+        ]
+    },
+    {
+        "id": "b889c06211696a6b",
+        "type": "debug",
+        "z": "1631f3f6c53a7ab6",
+        "name": "debug 39",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "4c91ca3536d9dd7a",
+        "type": "comment",
+        "z": "1631f3f6c53a7ab6",
+        "name": "Clear",
+        "info": "",
+        "x": 110,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "a4650970920ab5d1",
+        "type": "mqtt out",
+        "z": "1631f3f6c53a7ab6",
+        "name": "",
+        "topic": "ind360/devices/C249346600/commands/tare-clear/invoke",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "bdfcf8fab0b3a3bf",
+        "x": 810,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "1e1d13c71560ba20",
+        "type": "function",
+        "z": "1631f3f6c53a7ab6",
+        "name": "function 18",
+        "func": "msg.payload =\n{\n    \"$correlation\": \"TareTest1\",\n    \"$ttl\": 42,\n    \"responseTopic\": null,\n    \"command\": \"tare-clear\",\n    \"content\" : null\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 760,
+        "wires": [
+            [
+                "a4650970920ab5d1"
+            ]
+        ]
+    },
+    {
+        "id": "b52105be1dd2cf5e",
+        "type": "mqtt in",
+        "z": "1631f3f6c53a7ab6",
+        "name": "",
+        "topic": "ind360/devices/C249346600/commands/tare-clear/result",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "bdfcf8fab0b3a3bf",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 270,
+        "y": 820,
+        "wires": [
+            [
+                "74c0420220ab5841"
+            ]
+        ]
+    },
+    {
+        "id": "74c0420220ab5841",
+        "type": "debug",
+        "z": "1631f3f6c53a7ab6",
+        "name": "debug 38",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "fd51dd8d41be9104",
+        "type": "comment",
+        "z": "1631f3f6c53a7ab6",
+        "name": "Zero",
+        "info": "",
+        "x": 110,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "6230310dc7d7a2f6",
+        "type": "mqtt out",
+        "z": "1631f3f6c53a7ab6",
+        "name": "",
+        "topic": "ind360/devices/C249346600/commands/zero/invoke",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "bdfcf8fab0b3a3bf",
+        "x": 780,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "b1c0211859552492",
+        "type": "function",
+        "z": "1631f3f6c53a7ab6",
+        "name": "function 20",
+        "func": "msg.payload =\n{\n    \"$correlation\": \"Zero-Test1\",\n    \"$ttl\": 42,\n    \"responseTopic\": null,\n    \"command\": \"zero\",\n    \"content\" : null\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 1100,
+        "wires": [
+            [
+                "6230310dc7d7a2f6"
+            ]
+        ]
+    },
+    {
+        "id": "f6b246d0719a0cd8",
+        "type": "mqtt in",
+        "z": "1631f3f6c53a7ab6",
+        "name": "",
+        "topic": "ind360/devices/C249346600/commands/zero/result",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "bdfcf8fab0b3a3bf",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 250,
+        "y": 1160,
+        "wires": [
+            [
+                "31e7dd7bec19e9d6"
+            ]
+        ]
+    },
+    {
+        "id": "31e7dd7bec19e9d6",
+        "type": "debug",
+        "z": "1631f3f6c53a7ab6",
+        "name": "debug 41",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "b16a4b4962d51858",
+        "type": "comment",
+        "z": "1631f3f6c53a7ab6",
+        "name": "Tare preset",
+        "info": "",
+        "x": 120,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "d19a6ec7ea22846e",
+        "type": "mqtt out",
+        "z": "1631f3f6c53a7ab6",
+        "name": "",
+        "topic": "ind360/devices/C249346600/commands/tare-preset/invoke",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "bdfcf8fab0b3a3bf",
+        "x": 760,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "13914fdb52347b17",
+        "type": "inject",
+        "z": "1631f3f6c53a7ab6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 1300,
+        "wires": [
+            [
+                "85406e679d98c717"
+            ]
+        ]
+    },
+    {
+        "id": "85406e679d98c717",
+        "type": "function",
+        "z": "1631f3f6c53a7ab6",
+        "name": "function 21",
+        "func": "msg.payload =\n{\n    \"$correlation\": \"Tare-PresetTest1\",\n    \"$ttl\": 42,\n    \"responseTopic\": null,\n    \"command\": \"tare-preset\",\n    \"content\" : {\n        \"value\" : \"2.0\",\n        \"unit\" : \"Kg\"\n    }\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 1300,
+        "wires": [
+            [
+                "d19a6ec7ea22846e",
+                "4e1d58788484fd67"
+            ]
+        ]
+    },
+    {
+        "id": "4e1d58788484fd67",
+        "type": "debug",
+        "z": "1631f3f6c53a7ab6",
+        "name": "debug 42",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "3852f26d850e425d",
+        "type": "mqtt in",
+        "z": "1631f3f6c53a7ab6",
+        "name": "",
+        "topic": "ind360/devices/C249346600/commands/tare-preset/result",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "bdfcf8fab0b3a3bf",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 270,
+        "y": 1360,
+        "wires": [
+            [
+                "27838ce4ffb78e3b"
+            ]
+        ]
+    },
+    {
+        "id": "27838ce4ffb78e3b",
+        "type": "debug",
+        "z": "1631f3f6c53a7ab6",
+        "name": "debug 43",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "300f4a55729cec92",
+        "type": "comment",
+        "z": "1631f3f6c53a7ab6",
+        "name": "Preset-Tare scale",
+        "info": "",
+        "x": 140,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "8fa27ad278e631ae",
+        "type": "mqtt out",
+        "z": "1631f3f6c53a7ab6",
+        "name": "",
+        "topic": "ind360/devices/C249346600/commands/tare-preset/invoke",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "bdfcf8fab0b3a3bf",
+        "x": 800,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "7528f220b16efde5",
+        "type": "mqtt in",
+        "z": "1631f3f6c53a7ab6",
+        "name": "",
+        "topic": "ind360/devices/C249346600/commands/tare-preset/result",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "bdfcf8fab0b3a3bf",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 270,
+        "y": 1000,
+        "wires": [
+            [
+                "f778e82f5cd1c237"
+            ]
+        ]
+    },
+    {
+        "id": "f778e82f5cd1c237",
+        "type": "debug",
+        "z": "1631f3f6c53a7ab6",
+        "name": "debug 30",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "b68a10838e41fe85",
+        "type": "ui-group",
+        "name": "Interfacing with MQTT",
+        "page": "53ecc0729c93d8cd",
+        "width": "3",
+        "height": 1,
+        "order": 3,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "a4a82a723e2f0305",
+        "type": "ui-group",
+        "name": "Measurement via OpenAPI",
+        "page": "53ecc0729c93d8cd",
+        "width": "3",
+        "height": 1,
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": false,
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "b8a32fa32f76da74",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.0.24",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "bdfcf8fab0b3a3bf",
+        "type": "mqtt-broker",
+        "name": "Ignition",
+        "broker": "192.168.0.24",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "53ecc0729c93d8cd",
+        "type": "ui-page",
+        "name": "IND360",
+        "ui": "0d04eb0182720e58",
+        "path": "/page3",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "cd5e8d79b20b9b85",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "0d04eb0182720e58",
+        "type": "ui-base",
+        "name": "My Dashboard",
+        "path": "/dashboard",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "navigationStyle": "default",
+        "titleBarStyle": "default"
+    },
+    {
+        "id": "cd5e8d79b20b9b85",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094CE",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    }
+]

@@ -1,0 +1,826 @@
+[
+    {
+        "id": "499d34cfa2457edb",
+        "type": "mqtt out",
+        "z": "9ac8429bf18e22e6",
+        "name": "",
+        "topic": "X_VRMS",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "0adb686c37958a22",
+        "x": 1320,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "01bba1f18e14c8de",
+        "type": "mqtt out",
+        "z": "9ac8429bf18e22e6",
+        "name": "",
+        "topic": "Y_VRMS",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "0adb686c37958a22",
+        "x": 1320,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "0105fe9a267920e6",
+        "type": "mqtt out",
+        "z": "9ac8429bf18e22e6",
+        "name": "",
+        "topic": "Z_VRMS",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "0adb686c37958a22",
+        "x": 1320,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "498f1116c946c774",
+        "type": "mqtt in",
+        "z": "9ac8429bf18e22e6",
+        "name": "",
+        "topic": "output/vibration_severity",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "0adb686c37958a22",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 300,
+        "wires": [
+            [
+                "5f6d6e459091d482",
+                "23a53bdf6c20f8e7"
+            ]
+        ]
+    },
+    {
+        "id": "5f6d6e459091d482",
+        "type": "debug",
+        "z": "9ac8429bf18e22e6",
+        "name": "debug 25",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "0c28087e9551f708",
+        "type": "inject",
+        "z": "9ac8429bf18e22e6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 440,
+        "wires": [
+            [
+                "be6c0d48ec5c31d4",
+                "1ecf5e1698cb64fe",
+                "41ccdc1eec07c588",
+                "9902cae23273b0f9",
+                "281c4e9661df7a6a",
+                "6ace8ed1f91202ad",
+                "ce8e4bf2a0963448",
+                "0b8d24ad64011757"
+            ]
+        ]
+    },
+    {
+        "id": "48ab49eaabd8f9b7",
+        "type": "comment",
+        "z": "9ac8429bf18e22e6",
+        "name": "Real world data",
+        "info": "",
+        "x": 140,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "be6c0d48ec5c31d4",
+        "type": "OpcUa-Item",
+        "z": "9ac8429bf18e22e6",
+        "item": "ns=2;i=1",
+        "datatype": "Float",
+        "value": "",
+        "name": "X_vrms",
+        "x": 320,
+        "y": 480,
+        "wires": [
+            [
+                "5cbb84d787d825c5"
+            ]
+        ]
+    },
+    {
+        "id": "1ecf5e1698cb64fe",
+        "type": "OpcUa-Item",
+        "z": "9ac8429bf18e22e6",
+        "item": "ns=2;i=2",
+        "datatype": "Float",
+        "value": "",
+        "name": "Y_vrms",
+        "x": 320,
+        "y": 520,
+        "wires": [
+            [
+                "5cbb84d787d825c5"
+            ]
+        ]
+    },
+    {
+        "id": "41ccdc1eec07c588",
+        "type": "OpcUa-Item",
+        "z": "9ac8429bf18e22e6",
+        "item": "ns=2;i=3",
+        "datatype": "Float",
+        "value": "",
+        "name": "Z_vrms",
+        "x": 320,
+        "y": 560,
+        "wires": [
+            [
+                "5cbb84d787d825c5"
+            ]
+        ]
+    },
+    {
+        "id": "9902cae23273b0f9",
+        "type": "OpcUa-Item",
+        "z": "9ac8429bf18e22e6",
+        "item": "ns=2;i=5",
+        "datatype": "Float",
+        "value": "",
+        "name": "Threshold Low",
+        "x": 340,
+        "y": 620,
+        "wires": [
+            [
+                "5cbb84d787d825c5"
+            ]
+        ]
+    },
+    {
+        "id": "281c4e9661df7a6a",
+        "type": "OpcUa-Item",
+        "z": "9ac8429bf18e22e6",
+        "item": "ns=2;i=6",
+        "datatype": "Float",
+        "value": "",
+        "name": "Threshold High",
+        "x": 340,
+        "y": 660,
+        "wires": [
+            [
+                "5cbb84d787d825c5"
+            ]
+        ]
+    },
+    {
+        "id": "6ace8ed1f91202ad",
+        "type": "OpcUa-Item",
+        "z": "9ac8429bf18e22e6",
+        "item": "ns=2;i=10",
+        "datatype": "Int16",
+        "value": "",
+        "name": "SensorStatus",
+        "x": 340,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ce8e4bf2a0963448",
+        "type": "OpcUa-Item",
+        "z": "9ac8429bf18e22e6",
+        "item": "ns=2;i=4",
+        "datatype": "Int16",
+        "value": "",
+        "name": "iVibration State",
+        "x": 340,
+        "y": 740,
+        "wires": [
+            [
+                "5cbb84d787d825c5"
+            ]
+        ]
+    },
+    {
+        "id": "0b8d24ad64011757",
+        "type": "OpcUa-Item",
+        "z": "9ac8429bf18e22e6",
+        "item": "ns=2;i=7",
+        "datatype": "Float",
+        "value": "",
+        "name": "rTemp",
+        "x": 310,
+        "y": 440,
+        "wires": [
+            [
+                "5cbb84d787d825c5"
+            ]
+        ]
+    },
+    {
+        "id": "5cbb84d787d825c5",
+        "type": "OpcUa-Client",
+        "z": "9ac8429bf18e22e6",
+        "endpoint": "c574cb17c2ea741b",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "setstatusandtime": false,
+        "keepsessionalive": false,
+        "name": "",
+        "applicationName": "",
+        "applicationUri": "",
+        "x": 540,
+        "y": 440,
+        "wires": [
+            [
+                "c58db4014de1a861"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "c58db4014de1a861",
+        "type": "join",
+        "z": "9ac8429bf18e22e6",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "useparts": false,
+        "accumulate": false,
+        "timeout": "",
+        "count": "7",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 730,
+        "y": 440,
+        "wires": [
+            [
+                "95e489f25f1aa0b6"
+            ]
+        ]
+    },
+    {
+        "id": "95e489f25f1aa0b6",
+        "type": "function",
+        "z": "9ac8429bf18e22e6",
+        "name": "function 19",
+        "func": "// Build payload\nmsg.payload = {\n    // OpenPLC\n    plc_rThresholdHigh: msg.payload[\"ns=2;i=6\"].toFixed(3),\n    plc_rThresholdLow: msg.payload[\"ns=2;i=5\"].toFixed(3),\n    plc_rSensortemp: msg.payload[\"ns=2;i=7\"].toFixed(3),\n    plc_iVibrationState: msg.payload[\"ns=2;i=4\"],\n    plc_rSensorX_vrms: msg.payload[\"ns=2;i=1\"].toFixed(3),\n    plc_rSensorY_vrms: msg.payload[\"ns=2;i=2\"].toFixed(3),\n    plc_rSensorZ_vrms: msg.payload[\"ns=2;i=3\"].toFixed(3),\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 440,
+        "wires": [
+            [
+                "ae6832fde4ce3a2c",
+                "c133961cecd5a7e9",
+                "cf7c8ca242307427"
+            ]
+        ]
+    },
+    {
+        "id": "bcc715c3e66b4dbc",
+        "type": "debug",
+        "z": "9ac8429bf18e22e6",
+        "name": "debug 33",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1320,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "ae6832fde4ce3a2c",
+        "type": "function",
+        "z": "9ac8429bf18e22e6",
+        "name": "X_VRMS",
+        "func": "msg.payload = msg.payload.plc_rSensorX_vrms;\nmsg.topic = 'X_VRMS';\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1080,
+        "y": 440,
+        "wires": [
+            [
+                "499d34cfa2457edb",
+                "bcc715c3e66b4dbc",
+                "b936037dc0035726"
+            ]
+        ]
+    },
+    {
+        "id": "c133961cecd5a7e9",
+        "type": "function",
+        "z": "9ac8429bf18e22e6",
+        "name": "Y_VRMS",
+        "func": "msg.payload = msg.payload.plc_rSensorY_vrms;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1080,
+        "y": 500,
+        "wires": [
+            [
+                "01bba1f18e14c8de",
+                "bcc715c3e66b4dbc",
+                "f5c16baf41c29bc6"
+            ]
+        ]
+    },
+    {
+        "id": "cf7c8ca242307427",
+        "type": "function",
+        "z": "9ac8429bf18e22e6",
+        "name": "Z_VRMS",
+        "func": "msg.payload = msg.payload.plc_rSensorZ_vrms;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1080,
+        "y": 560,
+        "wires": [
+            [
+                "0105fe9a267920e6",
+                "bcc715c3e66b4dbc",
+                "ecdf9ac05c893859"
+            ]
+        ]
+    },
+    {
+        "id": "2777fd5282de88d6",
+        "type": "ui-gauge",
+        "z": "9ac8429bf18e22e6",
+        "name": "Vibration Severity",
+        "group": "57656d9e4ff36cb4",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Vibration Severity",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "mm/s",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "Stable",
+                "textType": "str"
+            },
+            {
+                "from": "4",
+                "color": "#ffc800",
+                "text": "Warning",
+                "textType": "str"
+            },
+            {
+                "from": "7",
+                "color": "#ea5353",
+                "text": "Critical",
+                "textType": "str"
+            }
+        ],
+        "min": 0,
+        "max": 10,
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 670,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "23a53bdf6c20f8e7",
+        "type": "function",
+        "z": "9ac8429bf18e22e6",
+        "name": "function 16",
+        "func": "\nmsg.payload = msg.payload.toFixed(2);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 340,
+        "wires": [
+            [
+                "2777fd5282de88d6"
+            ]
+        ]
+    },
+    {
+        "id": "b936037dc0035726",
+        "type": "ui-gauge",
+        "z": "9ac8429bf18e22e6",
+        "name": "Vibration X-RMS",
+        "group": "47158645d2cf26ba",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Vibration X-RMS",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "mm/s",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "Stable",
+                "textType": "str"
+            },
+            {
+                "from": "4",
+                "color": "#ffc800",
+                "text": "Warning",
+                "textType": "str"
+            },
+            {
+                "from": "7",
+                "color": "#ea5353",
+                "text": "Critical",
+                "textType": "str"
+            }
+        ],
+        "min": 0,
+        "max": 10,
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1350,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f5c16baf41c29bc6",
+        "type": "ui-gauge",
+        "z": "9ac8429bf18e22e6",
+        "name": "Vibration Y-RMS",
+        "group": "47158645d2cf26ba",
+        "order": 2,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Vibration Y-RMS",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "mm/s",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "Stable",
+                "textType": "str"
+            },
+            {
+                "from": "4",
+                "color": "#ffc800",
+                "text": "Warning",
+                "textType": "str"
+            },
+            {
+                "from": "7",
+                "color": "#ea5353",
+                "text": "Critical",
+                "textType": "str"
+            }
+        ],
+        "min": 0,
+        "max": 10,
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1340,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ecdf9ac05c893859",
+        "type": "ui-gauge",
+        "z": "9ac8429bf18e22e6",
+        "name": "Vibration Z-RMS",
+        "group": "47158645d2cf26ba",
+        "order": 3,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Vibration Z-RMS",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "mm/s",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "Stable",
+                "textType": "str"
+            },
+            {
+                "from": "4",
+                "color": "#ffc800",
+                "text": "Warning",
+                "textType": "str"
+            },
+            {
+                "from": "7",
+                "color": "#ea5353",
+                "text": "Critical",
+                "textType": "str"
+            }
+        ],
+        "min": 0,
+        "max": 10,
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1340,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0adb686c37958a22",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.0.109",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "c574cb17c2ea741b",
+        "type": "OpcUa-Endpoint",
+        "name": "OpenPLC",
+        "endpoint": "opc.tcp://192.168.100.5:4840/openplc/opcua",
+        "secpol": "None",
+        "secmode": "None",
+        "none": true,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
+    },
+    {
+        "id": "57656d9e4ff36cb4",
+        "type": "ui-group",
+        "name": "Analysis",
+        "page": "4238609d3c35929a",
+        "width": "3",
+        "height": 1,
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "47158645d2cf26ba",
+        "type": "ui-group",
+        "name": "Machine Vibration",
+        "page": "4238609d3c35929a",
+        "width": "3",
+        "height": 1,
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "4238609d3c35929a",
+        "type": "ui-page",
+        "name": "Coreflux MQTT Broker",
+        "ui": "9b6f56e61bfe9f00",
+        "path": "/page5",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "16eae288439c82a7",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "9b6f56e61bfe9f00",
+        "type": "ui-base",
+        "name": "My Dashboard",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": true
+    },
+    {
+        "id": "16eae288439c82a7",
+        "type": "ui-theme",
+        "name": "white",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#ed701d",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "75c26d5257f5187b",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-opcua": "0.2.350",
+            "@flowfuse/node-red-dashboard": "1.30.2"
+        }
+    }
+]

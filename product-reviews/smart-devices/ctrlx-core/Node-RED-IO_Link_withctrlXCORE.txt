@@ -1,0 +1,986 @@
+[
+    {
+        "id": "9d42d3c4665a1185",
+        "type": "tab",
+        "label": "IO-Link",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "08b1462919da4b85",
+        "type": "group",
+        "z": "9d42d3c4665a1185",
+        "name": "",
+        "style": {
+            "fill": "#ffffbf",
+            "label": true
+        },
+        "nodes": [
+            "8792e8c443a54c68",
+            "c1ce062f803801db",
+            "13b826a108a7e8f3",
+            "4a42e5acfa15db5b",
+            "487e0231bd1fcc37",
+            "4cddfb492e9c99f2",
+            "3c3ec47822cac2f8",
+            "f1cb390742810d55",
+            "3d7a675bd7790ecf",
+            "cc735b7494f8da0e",
+            "d19f782f2f0096d2",
+            "6dbf1eec3ff48e4f",
+            "a53f2bbdba6a417d",
+            "8ae861c12c2078cf",
+            "d9eea572b6d57183",
+            "d8f500a717377f8c",
+            "eb40c3d799f3c637"
+        ],
+        "x": 74,
+        "y": 59,
+        "w": 1392,
+        "h": 382
+    },
+    {
+        "id": "f4ff87d31eacfa6a",
+        "type": "group",
+        "z": "9d42d3c4665a1185",
+        "name": "",
+        "style": {
+            "label": true,
+            "color": "#ffffff",
+            "fill": "#e3f3d3"
+        },
+        "nodes": [
+            "a4961a415518fbf6",
+            "573a9795b84b4bd9",
+            "0b292ffc3ad4925f",
+            "2d0ecfcdb756e365",
+            "249597fbceb78e77",
+            "c7116e8a73597b7b",
+            "41c136bb3f1150ed",
+            "59e2110b4936729e",
+            "be3ce63a53edbf55",
+            "be21f8e4a207dd27",
+            "648c6f531666c431",
+            "20336c3cfc0c937a",
+            "e2d97fd338271e11",
+            "4ccd8692f90c9899",
+            "476da2f1bab9f56b",
+            "d7afd84176f09e7a",
+            "cce952292581f5e0",
+            "5192a23c8bfdabae"
+        ],
+        "x": 74,
+        "y": 479,
+        "w": 1792,
+        "h": 302
+    },
+    {
+        "id": "6e7476184286d938",
+        "type": "group",
+        "z": "9d42d3c4665a1185",
+        "name": "",
+        "style": {
+            "label": true,
+            "color": "#ffefbf",
+            "fill": "#ffefbf"
+        },
+        "nodes": [
+            "1cd2f25fd7e12788",
+            "3115e5b650626056",
+            "efd687ff4613a8ec",
+            "9701f65a3ec707b3"
+        ],
+        "x": 74,
+        "y": 819,
+        "w": 652,
+        "h": 122
+    },
+    {
+        "id": "a4961a415518fbf6",
+        "type": "ctrlx-datalayer-subscribe",
+        "z": "9d42d3c4665a1185",
+        "g": "f4ff87d31eacfa6a",
+        "subscription": "4a2aac0737496e58",
+        "path": "plc/app/Application/sym/PLC_PRG/iDistance",
+        "name": "iDistance",
+        "x": 160,
+        "y": 560,
+        "wires": [
+            [
+                "573a9795b84b4bd9"
+            ]
+        ]
+    },
+    {
+        "id": "573a9795b84b4bd9",
+        "type": "ui_artlessgauge",
+        "z": "9d42d3c4665a1185",
+        "g": "f4ff87d31eacfa6a",
+        "group": "795825550c3b8904",
+        "order": 8,
+        "width": "0",
+        "height": "0",
+        "name": "Distance value",
+        "icon": "",
+        "label": "Distance value",
+        "unit": "cm",
+        "layout": "linear",
+        "decimals": 0,
+        "differential": false,
+        "minmax": false,
+        "colorTrack": "#555555",
+        "style": "",
+        "colorFromTheme": true,
+        "property": "payload",
+        "secondary": "secondary",
+        "inline": false,
+        "animate": true,
+        "sectors": [
+            {
+                "val": 5,
+                "col": "#ff9900",
+                "t": "min",
+                "dot": 0
+            },
+            {
+                "val": 200,
+                "col": "#ff9900",
+                "t": "max",
+                "dot": 0
+            }
+        ],
+        "lineWidth": 3,
+        "bgcolorFromTheme": true,
+        "diffCenter": "",
+        "x": 620,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "8792e8c443a54c68",
+        "type": "ctrlx-datalayer-subscribe",
+        "z": "9d42d3c4665a1185",
+        "g": "08b1462919da4b85",
+        "subscription": "4a2aac0737496e58",
+        "path": "plc/app/Application/sym/PLC_PRG/strProductID",
+        "name": "Product ID",
+        "x": 160,
+        "y": 220,
+        "wires": [
+            [
+                "c1ce062f803801db"
+            ]
+        ]
+    },
+    {
+        "id": "c1ce062f803801db",
+        "type": "ui_text",
+        "z": "9d42d3c4665a1185",
+        "g": "08b1462919da4b85",
+        "group": "795825550c3b8904",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Product ID",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 610,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "13b826a108a7e8f3",
+        "type": "ui_button",
+        "z": "9d42d3c4665a1185",
+        "g": "08b1462919da4b85",
+        "name": "",
+        "group": "795825550c3b8904",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Update data",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 170,
+        "y": 340,
+        "wires": [
+            [
+                "487e0231bd1fcc37"
+            ]
+        ]
+    },
+    {
+        "id": "4a42e5acfa15db5b",
+        "type": "ctrlx-datalayer-request",
+        "z": "9d42d3c4665a1185",
+        "g": "08b1462919da4b85",
+        "device": "7abdeea62fe57d78",
+        "method": "WRITE",
+        "path": "plc/app/Application/sym/PLC_PRG/bRead_ProductID",
+        "payloadFormat": "value_type",
+        "name": "Read Product ID",
+        "x": 730,
+        "y": 340,
+        "wires": [
+            [
+                "a53f2bbdba6a417d"
+            ]
+        ]
+    },
+    {
+        "id": "487e0231bd1fcc37",
+        "type": "trigger",
+        "z": "9d42d3c4665a1185",
+        "g": "08b1462919da4b85",
+        "name": "",
+        "op1": "true",
+        "op2": "false",
+        "op1type": "bool",
+        "op2type": "bool",
+        "duration": "500",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "ms",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 360,
+        "y": 340,
+        "wires": [
+            [
+                "4cddfb492e9c99f2"
+            ]
+        ]
+    },
+    {
+        "id": "4cddfb492e9c99f2",
+        "type": "function",
+        "z": "9d42d3c4665a1185",
+        "g": "08b1462919da4b85",
+        "name": "json",
+        "func": "msg.payload = {\n    \"type\": \"bool8\",\n    \"value\": msg.payload\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 340,
+        "wires": [
+            [
+                "4a42e5acfa15db5b",
+                "d19f782f2f0096d2"
+            ]
+        ]
+    },
+    {
+        "id": "3c3ec47822cac2f8",
+        "type": "ui_led",
+        "z": "9d42d3c4665a1185",
+        "g": "08b1462919da4b85",
+        "order": 4,
+        "group": "795825550c3b8904",
+        "width": 0,
+        "height": 0,
+        "label": "Read Status",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "true",
+                "valueType": "bool"
+            },
+            {
+                "color": "#00ff00",
+                "value": "false",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Read Status",
+        "x": 1370,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "f1cb390742810d55",
+        "type": "ctrlx-datalayer-request",
+        "z": "9d42d3c4665a1185",
+        "g": "08b1462919da4b85",
+        "device": "7abdeea62fe57d78",
+        "method": "READ",
+        "path": "plc/app/Application/sym/PLC_PRG/bProductID_Error",
+        "payloadFormat": "value",
+        "name": "Product ID Read error",
+        "x": 1160,
+        "y": 400,
+        "wires": [
+            [
+                "3c3ec47822cac2f8"
+            ]
+        ]
+    },
+    {
+        "id": "0b292ffc3ad4925f",
+        "type": "ui_led",
+        "z": "9d42d3c4665a1185",
+        "g": "f4ff87d31eacfa6a",
+        "order": 10,
+        "group": "795825550c3b8904",
+        "width": 0,
+        "height": 0,
+        "label": "Sensor Output",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#e3e3e3",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#00ff00",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Sensor Output",
+        "x": 620,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "2d0ecfcdb756e365",
+        "type": "ctrlx-datalayer-subscribe",
+        "z": "9d42d3c4665a1185",
+        "g": "f4ff87d31eacfa6a",
+        "subscription": "4a2aac0737496e58",
+        "path": "plc/app/Application/sym/PLC_PRG/bOutput",
+        "name": "Sensor Output",
+        "x": 170,
+        "y": 620,
+        "wires": [
+            [
+                "0b292ffc3ad4925f"
+            ]
+        ]
+    },
+    {
+        "id": "249597fbceb78e77",
+        "type": "ui_slider",
+        "z": "9d42d3c4665a1185",
+        "g": "f4ff87d31eacfa6a",
+        "name": "",
+        "label": "Enter Set Point",
+        "tooltip": "",
+        "group": "795825550c3b8904",
+        "order": 9,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "outs": "end",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": "10",
+        "max": "200",
+        "step": 1,
+        "className": "",
+        "x": 180,
+        "y": 740,
+        "wires": [
+            [
+                "41c136bb3f1150ed"
+            ]
+        ]
+    },
+    {
+        "id": "c7116e8a73597b7b",
+        "type": "ctrlx-datalayer-request",
+        "z": "9d42d3c4665a1185",
+        "g": "f4ff87d31eacfa6a",
+        "device": "7abdeea62fe57d78",
+        "method": "WRITE",
+        "path": "plc/app/Application/sym/PLC_PRG/uiSetPointWrite",
+        "payloadFormat": "value_type",
+        "name": "Select Set-Point",
+        "x": 520,
+        "y": 740,
+        "wires": [
+            [
+                "be3ce63a53edbf55"
+            ]
+        ]
+    },
+    {
+        "id": "41c136bb3f1150ed",
+        "type": "function",
+        "z": "9d42d3c4665a1185",
+        "g": "f4ff87d31eacfa6a",
+        "name": "json",
+        "func": "msg.payload = {\n    \"type\": \"uint16\",\n    \"value\": msg.payload\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 740,
+        "wires": [
+            [
+                "c7116e8a73597b7b"
+            ]
+        ]
+    },
+    {
+        "id": "59e2110b4936729e",
+        "type": "ctrlx-datalayer-request",
+        "z": "9d42d3c4665a1185",
+        "g": "f4ff87d31eacfa6a",
+        "device": "7abdeea62fe57d78",
+        "method": "WRITE",
+        "path": "plc/app/Application/sym/PLC_PRG/bWrite_SetPoint",
+        "payloadFormat": "value_type",
+        "name": "Write Set Point",
+        "x": 1060,
+        "y": 740,
+        "wires": [
+            [
+                "e2d97fd338271e11"
+            ]
+        ]
+    },
+    {
+        "id": "be3ce63a53edbf55",
+        "type": "trigger",
+        "z": "9d42d3c4665a1185",
+        "g": "f4ff87d31eacfa6a",
+        "name": "",
+        "op1": "true",
+        "op2": "false",
+        "op1type": "bool",
+        "op2type": "bool",
+        "duration": "500",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "ms",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 720,
+        "y": 740,
+        "wires": [
+            [
+                "be21f8e4a207dd27"
+            ]
+        ]
+    },
+    {
+        "id": "be21f8e4a207dd27",
+        "type": "function",
+        "z": "9d42d3c4665a1185",
+        "g": "f4ff87d31eacfa6a",
+        "name": "json",
+        "func": "msg.payload = {\n    \"type\": \"bool8\",\n    \"value\": msg.payload\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 740,
+        "wires": [
+            [
+                "59e2110b4936729e"
+            ]
+        ]
+    },
+    {
+        "id": "cce952292581f5e0",
+        "type": "ctrlx-datalayer-request",
+        "z": "9d42d3c4665a1185",
+        "g": "f4ff87d31eacfa6a",
+        "device": "7abdeea62fe57d78",
+        "method": "WRITE",
+        "path": "plc/app/Application/sym/PLC_PRG/bRead_SetPoint",
+        "payloadFormat": "value_type",
+        "name": "Read Set Point",
+        "x": 1760,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "648c6f531666c431",
+        "type": "trigger",
+        "z": "9d42d3c4665a1185",
+        "g": "f4ff87d31eacfa6a",
+        "name": "",
+        "op1": "true",
+        "op2": "false",
+        "op1type": "bool",
+        "op2type": "bool",
+        "duration": "500",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "ms",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 1420,
+        "y": 740,
+        "wires": [
+            [
+                "5192a23c8bfdabae"
+            ]
+        ]
+    },
+    {
+        "id": "5192a23c8bfdabae",
+        "type": "function",
+        "z": "9d42d3c4665a1185",
+        "g": "f4ff87d31eacfa6a",
+        "name": "json",
+        "func": "msg.payload = {\n    \"type\": \"bool8\",\n    \"value\": msg.payload\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1590,
+        "y": 740,
+        "wires": [
+            [
+                "cce952292581f5e0"
+            ]
+        ]
+    },
+    {
+        "id": "20336c3cfc0c937a",
+        "type": "ctrlx-datalayer-subscribe",
+        "z": "9d42d3c4665a1185",
+        "g": "f4ff87d31eacfa6a",
+        "subscription": "4a2aac0737496e58",
+        "path": "plc/app/Application/sym/PLC_PRG/uiSetPointRead_swap",
+        "name": "Set Point",
+        "x": 160,
+        "y": 680,
+        "wires": [
+            [
+                "4ccd8692f90c9899"
+            ]
+        ]
+    },
+    {
+        "id": "e2d97fd338271e11",
+        "type": "delay",
+        "z": "9d42d3c4665a1185",
+        "g": "f4ff87d31eacfa6a",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1240,
+        "y": 740,
+        "wires": [
+            [
+                "648c6f531666c431"
+            ]
+        ]
+    },
+    {
+        "id": "4ccd8692f90c9899",
+        "type": "ui_artlessgauge",
+        "z": "9d42d3c4665a1185",
+        "g": "f4ff87d31eacfa6a",
+        "group": "795825550c3b8904",
+        "order": 7,
+        "width": 6,
+        "height": "1",
+        "name": "Set Point",
+        "icon": "",
+        "label": "Set Point",
+        "unit": "cm",
+        "layout": "linear",
+        "decimals": 0,
+        "differential": false,
+        "minmax": false,
+        "colorTrack": "#555555",
+        "style": "",
+        "colorFromTheme": true,
+        "property": "payload",
+        "secondary": "secondary",
+        "inline": false,
+        "animate": true,
+        "sectors": [
+            {
+                "val": 5,
+                "col": "#00ff6e",
+                "t": "min",
+                "dot": 0
+            },
+            {
+                "val": 200,
+                "col": "#00ff6e",
+                "t": "max",
+                "dot": 0
+            }
+        ],
+        "lineWidth": 3,
+        "bgcolorFromTheme": true,
+        "diffCenter": "",
+        "x": 640,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "1cd2f25fd7e12788",
+        "type": "comment",
+        "z": "9d42d3c4665a1185",
+        "g": "6e7476184286d938",
+        "name": "SignalLight",
+        "info": "",
+        "x": 160,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "3115e5b650626056",
+        "type": "ctrlx-datalayer-subscribe",
+        "z": "9d42d3c4665a1185",
+        "g": "6e7476184286d938",
+        "subscription": "4a2aac0737496e58",
+        "path": "plc/app/Application/sym/GVL/segment1",
+        "name": "Segment 1",
+        "x": 160,
+        "y": 900,
+        "wires": [
+            [
+                "efd687ff4613a8ec"
+            ]
+        ]
+    },
+    {
+        "id": "efd687ff4613a8ec",
+        "type": "ui_led",
+        "z": "9d42d3c4665a1185",
+        "g": "6e7476184286d938",
+        "order": 12,
+        "group": "795825550c3b8904",
+        "width": 0,
+        "height": 0,
+        "label": "SmartLight Color",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "4",
+                "valueType": "num"
+            },
+            {
+                "color": "#00ff00",
+                "value": "2",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "SmartLight Color",
+        "x": 610,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "3d7a675bd7790ecf",
+        "type": "ui_text",
+        "z": "9d42d3c4665a1185",
+        "g": "08b1462919da4b85",
+        "group": "795825550c3b8904",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Vendor",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 620,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "cc735b7494f8da0e",
+        "type": "ctrlx-datalayer-subscribe",
+        "z": "9d42d3c4665a1185",
+        "g": "08b1462919da4b85",
+        "subscription": "4a2aac0737496e58",
+        "path": "plc/app/Application/sym/PLC_PRG/strVendor",
+        "name": "Vendor ID",
+        "x": 160,
+        "y": 160,
+        "wires": [
+            [
+                "3d7a675bd7790ecf"
+            ]
+        ]
+    },
+    {
+        "id": "d19f782f2f0096d2",
+        "type": "ctrlx-datalayer-request",
+        "z": "9d42d3c4665a1185",
+        "g": "08b1462919da4b85",
+        "device": "7abdeea62fe57d78",
+        "method": "WRITE",
+        "path": "plc/app/Application/sym/PLC_PRG/bRead_Vendor",
+        "payloadFormat": "value_type",
+        "name": "Read Vendor",
+        "x": 710,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6dbf1eec3ff48e4f",
+        "type": "ctrlx-datalayer-request",
+        "z": "9d42d3c4665a1185",
+        "g": "08b1462919da4b85",
+        "device": "7abdeea62fe57d78",
+        "method": "READ",
+        "path": "plc/app/Application/sym/PLC_PRG/bVendor_Error",
+        "payloadFormat": "value",
+        "name": "Vendor Read error",
+        "x": 1150,
+        "y": 340,
+        "wires": [
+            [
+                "3c3ec47822cac2f8"
+            ]
+        ]
+    },
+    {
+        "id": "a53f2bbdba6a417d",
+        "type": "delay",
+        "z": "9d42d3c4665a1185",
+        "g": "08b1462919da4b85",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "500",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 930,
+        "y": 340,
+        "wires": [
+            [
+                "6dbf1eec3ff48e4f",
+                "f1cb390742810d55"
+            ]
+        ]
+    },
+    {
+        "id": "8ae861c12c2078cf",
+        "type": "ui_dropdown",
+        "z": "9d42d3c4665a1185",
+        "g": "08b1462919da4b85",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "place": "Port number",
+        "group": "795825550c3b8904",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "X01",
+                "value": 1,
+                "type": "num"
+            },
+            {
+                "label": "X02",
+                "value": 2,
+                "type": "num"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "x": 160,
+        "y": 280,
+        "wires": [
+            [
+                "d8f500a717377f8c"
+            ]
+        ]
+    },
+    {
+        "id": "d9eea572b6d57183",
+        "type": "ctrlx-datalayer-request",
+        "z": "9d42d3c4665a1185",
+        "g": "08b1462919da4b85",
+        "device": "7abdeea62fe57d78",
+        "method": "WRITE",
+        "path": "plc/app/Application/sym/PLC_PRG/uiIoLinkPortNbr_ProductID",
+        "payloadFormat": "value_type",
+        "name": "IO-Link Port number",
+        "x": 580,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d8f500a717377f8c",
+        "type": "function",
+        "z": "9d42d3c4665a1185",
+        "g": "08b1462919da4b85",
+        "name": "json",
+        "func": "msg.payload = {\n    \"type\": \"uint16\",\n    \"value\": msg.payload\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 280,
+        "wires": [
+            [
+                "d9eea572b6d57183"
+            ]
+        ]
+    },
+    {
+        "id": "476da2f1bab9f56b",
+        "type": "ui_text",
+        "z": "9d42d3c4665a1185",
+        "g": "f4ff87d31eacfa6a",
+        "group": "795825550c3b8904",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "Distance Sensor",
+        "label": "",
+        "format": "{{\"Distance Sensor- O5D150\"}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 620,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "9701f65a3ec707b3",
+        "type": "ui_text",
+        "z": "9d42d3c4665a1185",
+        "g": "6e7476184286d938",
+        "group": "795825550c3b8904",
+        "order": 11,
+        "width": 0,
+        "height": 0,
+        "name": "Signal Lamp",
+        "label": "",
+        "format": "{{\"Signal Lamp- DV2510\"}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 630,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "eb40c3d799f3c637",
+        "type": "comment",
+        "z": "9d42d3c4665a1185",
+        "g": "08b1462919da4b85",
+        "name": "Read vendor and product ID",
+        "info": "",
+        "x": 220,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "d7afd84176f09e7a",
+        "type": "comment",
+        "z": "9d42d3c4665a1185",
+        "g": "f4ff87d31eacfa6a",
+        "name": "Distance Sensor",
+        "info": "",
+        "x": 180,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "4a2aac0737496e58",
+        "type": "ctrlx-config-subscription",
+        "device": "7abdeea62fe57d78",
+        "name": "ctrlX CORE",
+        "publishIntervalMs": ""
+    },
+    {
+        "id": "795825550c3b8904",
+        "type": "ui_group",
+        "name": "IO-Link device data",
+        "tab": "4bccce794419b2e5",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "7abdeea62fe57d78",
+        "type": "ctrlx-config",
+        "name": "ctrlx CORE",
+        "hostname": "localhost",
+        "debug": false
+    },
+    {
+        "id": "4bccce794419b2e5",
+        "type": "ui_tab",
+        "name": "Interfacing ctrlX CORE with IO-Link master ",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    }
+]

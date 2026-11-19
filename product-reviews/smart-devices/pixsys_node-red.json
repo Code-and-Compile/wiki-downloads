@@ -1,0 +1,759 @@
+[
+    {
+        "id": "58db5e21f49ecded",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "74a01b3f73108ccb",
+        "type": "mqtt-broker",
+        "name": "Mosquitto Broker",
+        "broker": "test.mosquitto.org:1883",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "99f30321f668ed79",
+        "type": "OpcUa-Endpoint",
+        "name": "Pixsys CODESYS",
+        "endpoint": "opc.tcp://192.168.0.229:4840",
+        "secpol": "None",
+        "secmode": "None",
+        "none": true,
+        "login": false,
+        "usercert": false,
+        "usercertificate": "",
+        "userprivatekey": ""
+    },
+    {
+        "id": "dashboard-ui",
+        "type": "ui-base",
+        "name": "Motor Monitor",
+        "path": "/dashboard",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-control",
+            "ui-notification"
+        ]
+    },
+    {
+        "id": "2eacae65bf231d7b",
+        "type": "ui-theme",
+        "name": "Theme Name",
+        "colors": {
+            "surface": "#001314",
+            "primary": "#0094ce",
+            "bgPage": "#001314",
+            "groupBg": "#001314",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "dashboard-page",
+        "type": "ui-page",
+        "name": "Vibration Monitoring",
+        "ui": "dashboard-ui",
+        "path": "/vibration",
+        "icon": "",
+        "layout": "grid",
+        "theme": "2eacae65bf231d7b",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "dashboard-group",
+        "type": "ui-group",
+        "name": "Motor Unit A",
+        "page": "dashboard-page",
+        "width": 12,
+        "height": 1,
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "e952b7132c6e3c35",
+        "type": "comment",
+        "z": "58db5e21f49ecded",
+        "name": "WARNING: please check you have started this container with a volume that is mounted to /data\\n otherwise any flow changes are lost when you redeploy or upgrade the container\\n (e.g. upgrade to a more recent node-red docker image).\\n  If you are using named volumes you can ignore this warning.\\n Double click or see info side panel to learn how to start Node-RED in Docker to save your work",
+        "info": "\nTo start docker with a bind mount volume (-v option), for example:\n\n```\ndocker run -it -p 1880:1880 -v /home/user/node_red_data:/data --name mynodered nodered/node-red\n```\n\nwhere `/home/user/node_red_data` is a directory on your host machine where you want to store your flows.\n\nIf you do not do this then you can experiment and redploy flows, but if you restart or upgrade the container the flows will be disconnected and lost. \n\nThey will still exist in a hidden data volume, which can be recovered using standard docker techniques, but that is much more complex than just starting with a named volume as described above.",
+        "x": 350,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "4a13aa687e60f11e",
+        "type": "OpcUa-Item",
+        "z": "58db5e21f49ecded",
+        "item": "ns=4;s=|var|TC620-A-P4-WT2.Application.PLC_PRG.iVibrationState",
+        "datatype": "Int16",
+        "value": "",
+        "name": "Vibration State",
+        "x": 340,
+        "y": 260,
+        "wires": [
+            [
+                "298691d040d57650"
+            ]
+        ]
+    },
+    {
+        "id": "42b0a9c74930afe9",
+        "type": "inject",
+        "z": "58db5e21f49ecded",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 260,
+        "wires": [
+            [
+                "4a13aa687e60f11e",
+                "d09f3f55f785cc26",
+                "aa702c5684aa8424",
+                "886bf95099851fcf",
+                "db436371ba85629d",
+                "b6d92bb186076fcd",
+                "967e2ec25f0fcada"
+            ]
+        ]
+    },
+    {
+        "id": "dec5831de060c412",
+        "type": "debug",
+        "z": "58db5e21f49ecded",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "298691d040d57650",
+        "type": "OpcUa-Client",
+        "z": "58db5e21f49ecded",
+        "endpoint": "99f30321f668ed79",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "setstatusandtime": false,
+        "keepsessionalive": false,
+        "name": "",
+        "applicationName": "",
+        "applicationUri": "",
+        "x": 560,
+        "y": 260,
+        "wires": [
+            [
+                "dec5831de060c412",
+                "7686cd95cfa4e0f8"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "d09f3f55f785cc26",
+        "type": "OpcUa-Item",
+        "z": "58db5e21f49ecded",
+        "item": "ns=4;s=|var|TC620-A-P4-WT2.Application.PLC_PRG.rTemp",
+        "datatype": "Int16",
+        "value": "",
+        "name": "Temp",
+        "x": 310,
+        "y": 300,
+        "wires": [
+            [
+                "298691d040d57650"
+            ]
+        ]
+    },
+    {
+        "id": "aa702c5684aa8424",
+        "type": "OpcUa-Item",
+        "z": "58db5e21f49ecded",
+        "item": "ns=4;s=|var|TC620-A-P4-WT2.Application.PLC_PRG.rX_VRMS",
+        "datatype": "Int16",
+        "value": "",
+        "name": "X-VRMS",
+        "x": 320,
+        "y": 340,
+        "wires": [
+            [
+                "298691d040d57650"
+            ]
+        ]
+    },
+    {
+        "id": "886bf95099851fcf",
+        "type": "OpcUa-Item",
+        "z": "58db5e21f49ecded",
+        "item": "ns=4;s=|var|TC620-A-P4-WT2.Application.PLC_PRG.rY_VRMS",
+        "datatype": "Int16",
+        "value": "",
+        "name": "Y-VRMS",
+        "x": 320,
+        "y": 380,
+        "wires": [
+            [
+                "298691d040d57650"
+            ]
+        ]
+    },
+    {
+        "id": "db436371ba85629d",
+        "type": "OpcUa-Item",
+        "z": "58db5e21f49ecded",
+        "item": "ns=4;s=|var|TC620-A-P4-WT2.Application.PLC_PRG.rZ_VRMS",
+        "datatype": "Int16",
+        "value": "",
+        "name": "Z-VRMS",
+        "x": 320,
+        "y": 420,
+        "wires": [
+            [
+                "298691d040d57650"
+            ]
+        ]
+    },
+    {
+        "id": "b6d92bb186076fcd",
+        "type": "OpcUa-Item",
+        "z": "58db5e21f49ecded",
+        "item": "ns=4;s=|var|TC620-A-P4-WT2.Application.PLC_PRG.rMaxVib",
+        "datatype": "Int16",
+        "value": "",
+        "name": "Max VRMS",
+        "x": 330,
+        "y": 460,
+        "wires": [
+            [
+                "298691d040d57650"
+            ]
+        ]
+    },
+    {
+        "id": "7686cd95cfa4e0f8",
+        "type": "function",
+        "z": "58db5e21f49ecded",
+        "name": "save in flow variable",
+        "func": "const topic = msg.topic || \"\";\nconst value = msg.payload;\n\n// Extract variable name from the end of the topic string\n// e.g. \"ns=4;s=|var|...PLC_PRG.rX_VRMS : msg.payload : number\" → \"rX_VRMS\"\nconst parts = topic.split(\".\");\nconst varPart = parts[parts.length - 1].split(\" \")[0]; // get \"rX_VRMS\" etc.\n\nif (varPart === \"iVibrationState\") {\n    flow.set(\"iVibrationState\", value);\n    msg.topic = \"iVibrationState\";\n} else if (varPart === \"rTemp\") {\n    flow.set(\"rTemp\", Number(value.toFixed(2)));\n    msg.topic = \"rTemp\";\n} else if (varPart === \"rX_VRMS\") {\n    flow.set(\"rX_VRMS\", Number(value.toFixed(2)));\n    msg.topic = \"rX_VRMS\";\n} else if (varPart === \"rY_VRMS\") {\n    flow.set(\"rY_VRMS\", Number(value.toFixed(2)));\n    msg.topic = \"rY_VRMS\";\n} else if (varPart === \"rZ_VRMS\") {\n    flow.set(\"rZ_VRMS\", Number(value.toFixed(2)));\n    msg.topic = \"rZ_VRMS\";\n} else if (varPart === \"rMaxVib\") {\n    flow.set(\"rMaxVib\", Number(value.toFixed(2)));\n    msg.topic = \"rMaxVib\";\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 300,
+        "wires": [
+            [
+                "e31e4611d1aa1ee8"
+            ]
+        ]
+    },
+    {
+        "id": "e31e4611d1aa1ee8",
+        "type": "function",
+        "z": "58db5e21f49ecded",
+        "name": "Route to Dashboard",
+        "func": "const xVal = flow.get(\"rX_VRMS\");\nconst yVal = flow.get(\"rY_VRMS\");\nconst zVal = flow.get(\"rZ_VRMS\");\n\nnode.send([\n    { payload: xVal },                                          // X-VRMS gauge\n    { payload: yVal },                                          // Y-VRMS gauge\n    { payload: zVal },                                          // Z-VRMS gauge\n    { payload: flow.get(\"rTemp\") },                            // Temperature gauge\n    { payload: xVal, topic: \"X-VRMS\" },                       // Combined trend\n    { payload: yVal, topic: \"Y-VRMS\" },                       // Combined trend\n    { payload: zVal, topic: \"Z-VRMS\" },                       // Combined trend\n    {\n        payload: (() => {\n            const state = flow.get(\"iVibrationState\");\n            if (state === 0) return 'System operating within normal parameters';\n            if (state === 1) return 'Warning: Elevated vibration detected';\n            if (state === 2) return 'Critical: Vibration exceeds safe limits';\n        })()\n    }                                                      // System status\n]);",
+        "outputs": 8,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1080,
+        "y": 300,
+        "wires": [
+            [
+                "d19f5da1bfbd410d"
+            ],
+            [
+                "6caa15eb187c4111"
+            ],
+            [
+                "4b3f1d9dfa4c9e1a"
+            ],
+            [
+                "451c805dc27bb744"
+            ],
+            [
+                "b1df264a931b6a7b"
+            ],
+            [
+                "b1df264a931b6a7b"
+            ],
+            [
+                "b1df264a931b6a7b"
+            ],
+            [
+                "12b259aea76ec44d"
+            ]
+        ]
+    },
+    {
+        "id": "d19f5da1bfbd410d",
+        "type": "ui-gauge",
+        "z": "58db5e21f49ecded",
+        "name": "X-VRMS",
+        "group": "dashboard-group",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "3",
+        "height": "3",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "X-VRMS",
+        "alwaysShowTitle": false,
+        "units": "m/s",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#00b4d8",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "0.3",
+                "color": "#ffaa00",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "0.6",
+                "color": "#ff0000",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": 1,
+        "sizeThickness": "16",
+        "sizeGap": "4",
+        "sizeKeyThickness": "8",
+        "className": "",
+        "x": 1420,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6caa15eb187c4111",
+        "type": "ui-gauge",
+        "z": "58db5e21f49ecded",
+        "name": "Y-VRMS",
+        "group": "dashboard-group",
+        "order": 2,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "3",
+        "height": "3",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Y-VRMS",
+        "alwaysShowTitle": false,
+        "units": "m/s",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#00ff88",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "0.3",
+                "color": "#ffaa00",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "0.6",
+                "color": "#ff0000",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": 1,
+        "sizeThickness": "16",
+        "sizeGap": "4",
+        "sizeKeyThickness": "8",
+        "className": "",
+        "x": 1420,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4b3f1d9dfa4c9e1a",
+        "type": "ui-gauge",
+        "z": "58db5e21f49ecded",
+        "name": "Z-VRMS",
+        "group": "dashboard-group",
+        "order": 3,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "3",
+        "height": "3",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Z-VRMS",
+        "alwaysShowTitle": false,
+        "units": "m/s",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#ff6b6b",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "0.3",
+                "color": "#ffaa00",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "0.6",
+                "color": "#ff0000",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": 1,
+        "sizeThickness": "16",
+        "sizeGap": "4",
+        "sizeKeyThickness": "8",
+        "className": "",
+        "x": 1420,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "451c805dc27bb744",
+        "type": "ui-gauge",
+        "z": "58db5e21f49ecded",
+        "name": "Temperature",
+        "group": "dashboard-group",
+        "order": 4,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "3",
+        "height": "3",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Temperature",
+        "alwaysShowTitle": false,
+        "units": "°C",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#ffaa00",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "60",
+                "color": "#ff6600",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "80",
+                "color": "#ff0000",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": 100,
+        "sizeThickness": "16",
+        "sizeGap": "4",
+        "sizeKeyThickness": "8",
+        "className": "",
+        "x": 1430,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b1df264a931b6a7b",
+        "type": "ui-chart",
+        "z": "58db5e21f49ecded",
+        "group": "dashboard-group",
+        "name": "VRMS Trend",
+        "label": "Vibration Trends",
+        "order": 5,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "V-RMS",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "",
+        "ymax": "",
+        "bins": "",
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": "1",
+        "showLegend": true,
+        "removeOlder": "1",
+        "removeOlderUnit": "60",
+        "removeOlderPoints": "",
+        "colors": [
+            "#00ffff",
+            "#00ff00",
+            "#ff8080",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": "12",
+        "height": "5",
+        "className": "",
+        "interpolation": "linear",
+        "x": 1430,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "12b259aea76ec44d",
+        "type": "ui-text",
+        "z": "58db5e21f49ecded",
+        "group": "dashboard-group",
+        "order": 6,
+        "name": "System Status",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "x": 1440,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "0709d1f6ee6f5b88",
+        "type": "mqtt out",
+        "z": "58db5e21f49ecded",
+        "name": "",
+        "topic": "pixsys/tc620/vibration",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "74a01b3f73108ccb",
+        "x": 600,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "967e2ec25f0fcada",
+        "type": "function",
+        "z": "58db5e21f49ecded",
+        "name": "send to MQTT Broker",
+        "func": "msg.payload = ({\n    X_VRMS: flow.get(\"rX_VRMS\")||0.0,\n    Y_VRMS: flow.get(\"rY_VRMS\")||0.0,\n    Z_VRMS: flow.get(\"rZ_VRMS\")||0.0,\n    Temp: flow.get(\"rTemp\")||0.0\n});\nmsg.topic = \"pixsys/tc620/vibration\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 500,
+        "wires": [
+            [
+                "0709d1f6ee6f5b88",
+                "ff9d278863cc6ae1"
+            ]
+        ]
+    },
+    {
+        "id": "ff9d278863cc6ae1",
+        "type": "debug",
+        "z": "58db5e21f49ecded",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "0831afc55b732a92",
+        "type": "inject",
+        "z": "58db5e21f49ecded",
+        "name": "Refresh",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "x": 1070,
+        "y": 400,
+        "wires": [
+            [
+                "b1df264a931b6a7b"
+            ]
+        ]
+    },
+    {
+        "id": "274e77ca826411f3",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-opcua": "0.2.354",
+            "@flowfuse/node-red-dashboard": "1.30.2"
+        }
+    }
+]

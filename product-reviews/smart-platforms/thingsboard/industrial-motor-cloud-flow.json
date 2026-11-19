@@ -1,0 +1,149 @@
+[
+    {
+        "id": "a1f3c9e1a22b4101",
+        "type": "tab",
+        "label": "ThingsBoard Cloud - Industrial Motor",
+        "disabled": false,
+        "info": "Local industrial motor simulator that publishes live telemetry to ThingsBoard Cloud EU."
+    },
+    {
+        "id": "7f174724b4a49d02",
+        "type": "inject",
+        "z": "a1f3c9e1a22b4101",
+        "name": "Generate every 5 seconds",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 160,
+        "wires": [
+            [
+                "a6e36da7f639b303"
+            ]
+        ]
+    },
+    {
+        "id": "a6e36da7f639b303",
+        "type": "function",
+        "z": "a1f3c9e1a22b4101",
+        "name": "Industrial motor simulator",
+        "func": "// Rich telemetry generator for ThingsBoard dashboards\n// Based on the Code & Compile industrial motor demo.\nlet s = context.get('s') || {\n    t: 0,\n    baseTemp: 24,\n    baseHum: 48,\n    motorOn: true,\n    speedRpm: 900,\n    energyKWh: 0,\n    runtimeSec: 0,\n    cycleCount: 0,\n    lastCycleT: 0,\n    fault: false,\n    faultCode: 0\n};\n\ns.t += 1;\n\nfunction clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }\nfunction rand(min, max) { return min + Math.random() * (max - min); }\nfunction chance(p) { return Math.random() < p; }\n\n// Motor state machine.\nif (chance(0.02)) s.motorOn = !s.motorOn;\nif (chance(0.01) && !s.fault) {\n    s.fault = true;\n    s.faultCode = [101, 202, 303, 404][Math.floor(Math.random() * 4)];\n}\nif (s.fault && chance(0.15)) {\n    s.fault = false;\n    s.faultCode = 0;\n}\n\n// Speed ramping.\nlet targetRpm = s.motorOn && !s.fault ? rand(800, 1450) : 0;\ns.speedRpm += (targetRpm - s.speedRpm) * 0.15;\ns.speedRpm = clamp(s.speedRpm, 0, 1600);\n\n// Environmental signals.\nlet dayWave = Math.sin(s.t / 120) * 1.5;\ns.baseTemp += rand(-0.02, 0.02);\ns.baseHum += rand(-0.05, 0.05);\nlet temperature = clamp(s.baseTemp + dayWave + rand(-0.2, 0.2), 18, 35);\nlet humidity = clamp(s.baseHum - dayWave + rand(-0.5, 0.5), 30, 70);\n\n// Vibration rises with motor speed and faults.\nlet vibBase = (s.speedRpm / 1600) * 4.0;\nlet vibrationRms = vibBase + rand(0.1, 0.5);\nif (s.fault) vibrationRms += rand(2, 5);\nvibrationRms = clamp(vibrationRms, 0, 12);\n\n// Electrical signals.\nlet currentA = s.motorOn && !s.fault\n    ? clamp((s.speedRpm / 1600) * 7 + rand(0, 1), 0, 10)\n    : rand(0, 0.3);\nif (s.fault) currentA += rand(2, 4);\n\nlet voltageV = 230 + rand(-3, 3);\nlet powerW = clamp(voltageV * currentA * 0.85, 0, 4000);\ns.energyKWh += (powerW / 1000) / 3600;\n\n// Production signals.\nif (s.motorOn && !s.fault) s.runtimeSec += 1;\nif (s.motorOn && !s.fault && (s.t - s.lastCycleT) > rand(15, 35)) {\n    s.cycleCount += 1;\n    s.lastCycleT = s.t;\n}\nlet cycleTimeSec = s.motorOn && !s.fault\n    ? clamp(s.t - s.lastCycleT, 0, 60)\n    : null;\n\n// Quality and availability.\nlet rejectRate = s.fault ? rand(3, 12) : rand(0.3, 2.0);\nlet goodParts = Math.round(s.cycleCount * (1 - rejectRate / 100));\nlet availability = clamp((s.runtimeSec / s.t) * 100, 0, 100);\n\n// Alarm state matches the dashboard thresholds.\nlet alarmLevel = 0;\nif (temperature > 30 || vibrationRms > 7) alarmLevel = 1;\nif (s.fault || vibrationRms > 9) alarmLevel = 2;\n\nmsg.payload = {\n    temperature: Number(temperature.toFixed(2)),\n    humidity: Number(humidity.toFixed(2)),\n    motorOn: s.motorOn && !s.fault,\n    speedRpm: Math.round(s.speedRpm),\n    vibrationRms: Number(vibrationRms.toFixed(2)),\n    currentA: Number(currentA.toFixed(2)),\n    voltageV: Number(voltageV.toFixed(1)),\n    powerW: Math.round(powerW),\n    energyKWh: Number(s.energyKWh.toFixed(3)),\n    cycleCount: s.cycleCount,\n    cycleTimeSec: cycleTimeSec === null ? null : Number(cycleTimeSec.toFixed(1)),\n    goodParts: goodParts,\n    rejectRate: Number(rejectRate.toFixed(2)),\n    availability: Number(availability.toFixed(1)),\n    fault: s.fault,\n    faultCode: s.faultCode,\n    alarmLevel: alarmLevel\n};\n\nmsg.topic = 'v1/devices/me/telemetry';\ncontext.set('s', s);\nnode.status({\n    fill: alarmLevel === 2 ? 'red' : alarmLevel === 1 ? 'yellow' : 'green',\n    shape: 'dot',\n    text: `${msg.payload.speedRpm} RPM | ${msg.payload.vibrationRms} mm/s`\n});\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 160,
+        "wires": [
+            [
+                "3a7487964a4bfd04"
+            ]
+        ]
+    },
+    {
+        "id": "3a7487964a4bfd04",
+        "type": "json",
+        "z": "a1f3c9e1a22b4101",
+        "name": "Serialize telemetry as JSON",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 680,
+        "y": 160,
+        "wires": [
+            [
+                "16927911b1a90405",
+                "974490b08a570606"
+            ]
+        ]
+    },
+    {
+        "id": "16927911b1a90405",
+        "type": "mqtt out",
+        "z": "a1f3c9e1a22b4101",
+        "name": "Publish to ThingsBoard Cloud EU",
+        "topic": "v1/devices/me/telemetry",
+        "qos": "1",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "application/json",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "d711c3e4b787b607",
+        "x": 970,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "974490b08a570606",
+        "type": "debug",
+        "z": "a1f3c9e1a22b4101",
+        "name": "Local telemetry preview",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "d711c3e4b787b607",
+        "type": "mqtt-broker",
+        "name": "ThingsBoard Cloud EU",
+        "broker": "mqtt.eu.thingsboard.cloud",
+        "port": "8883",
+        "tls": "d711c3e4b787b608",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "d711c3e4b787b608",
+        "type": "tls-config",
+        "name": "ThingsBoard Cloud EU TLS",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "servername": "",
+        "verifyservercert": true,
+        "alpnprotocol": ""
+    }
+]
