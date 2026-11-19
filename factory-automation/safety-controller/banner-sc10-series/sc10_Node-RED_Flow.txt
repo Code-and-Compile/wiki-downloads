@@ -1,0 +1,1377 @@
+[
+    {
+        "id": "39abad88d6d2d7af",
+        "type": "tab",
+        "label": "SC10 MODBUS",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "fa1735cc5b86496c",
+        "type": "modbus-client",
+        "name": "",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "tcpHost": "192.168.0.128",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": "2000",
+        "parallelUnitIdsAllowed": true
+    },
+    {
+        "id": "fd938ac3c9b5187e",
+        "type": "ui_tab",
+        "name": "Banner Engineering",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "3bf86681ebf1d823",
+        "type": "ui_group",
+        "name": "Read from SC10 Safety Controller",
+        "tab": "fd938ac3c9b5187e",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "87d1bd12cd357b55",
+        "type": "ui_group",
+        "name": "Send to SC10 Controller",
+        "tab": "fd938ac3c9b5187e",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "d382d622257ed392",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "27a18d84b8c5adff",
+        "type": "ui_spacer",
+        "z": "39abad88d6d2d7af",
+        "name": "spacer",
+        "group": "87d1bd12cd357b55",
+        "order": 4,
+        "width": "6",
+        "height": "1"
+    },
+    {
+        "id": "7ada871b6a522fae",
+        "type": "inject",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 380,
+        "wires": [
+            [
+                "84fe341897064bed"
+            ]
+        ]
+    },
+    {
+        "id": "84fe341897064bed",
+        "type": "modbus-getter",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "logIOActivities": false,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "900",
+        "quantity": "1",
+        "server": "fa1735cc5b86496c",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 360,
+        "y": 380,
+        "wires": [
+            [
+                "5c2e571bda1467a8",
+                "da8ecdefe7690c11"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "cd4004b9ae6cd3aa",
+        "type": "comment",
+        "z": "39abad88d6d2d7af",
+        "name": "Read from SC10 controller",
+        "info": "",
+        "x": 170,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "63448fa85dceb109",
+        "type": "ui_led",
+        "z": "39abad88d6d2d7af",
+        "order": 1,
+        "group": "3bf86681ebf1d823",
+        "width": 0,
+        "height": 0,
+        "label": "System Lockout",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#808080",
+                "value": "0",
+                "valueType": "num"
+            },
+            {
+                "color": "#ff0000",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "System Lockout",
+        "x": 1100,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "5c2e571bda1467a8",
+        "type": "function",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "func": "msg.payload = msg.payload[0].toString(2).padStart(16,\"0\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 380,
+        "wires": [
+            [
+                "e36ea471eb885bfe",
+                "df9846b01b021c1f",
+                "b83ed4c20753cadd",
+                "07a98c0a96df801d",
+                "47755d0a5598eb16",
+                "bb465dfa4b26c9b4",
+                "e85c781e80cd2252",
+                "c9c11496e0ba6857",
+                "e5f8b55af6cc9a8b",
+                "9c1c8d04619c26ab",
+                "851b857ba3f5318b",
+                "fb327933862ea29c"
+            ]
+        ]
+    },
+    {
+        "id": "e36ea471eb885bfe",
+        "type": "string",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "methods": [
+            {
+                "name": "right",
+                "params": [
+                    {
+                        "type": "num",
+                        "value": "1"
+                    }
+                ]
+            }
+        ],
+        "prop": "payload",
+        "propout": "payload",
+        "object": "msg",
+        "objectout": "msg",
+        "x": 750,
+        "y": 140,
+        "wires": [
+            [
+                "6bc4dc140cc4eb85"
+            ]
+        ]
+    },
+    {
+        "id": "6bc4dc140cc4eb85",
+        "type": "function",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "func": "msg.payload = parseInt(msg.payload, 2);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 140,
+        "wires": [
+            [
+                "63448fa85dceb109"
+            ]
+        ]
+    },
+    {
+        "id": "df9846b01b021c1f",
+        "type": "string",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "methods": [
+            {
+                "name": "right",
+                "params": [
+                    {
+                        "type": "num",
+                        "value": "2"
+                    }
+                ]
+            },
+            {
+                "name": "left",
+                "params": [
+                    {
+                        "type": "num",
+                        "value": "1"
+                    }
+                ]
+            }
+        ],
+        "prop": "payload",
+        "propout": "payload",
+        "object": "msg",
+        "objectout": "msg",
+        "x": 750,
+        "y": 200,
+        "wires": [
+            [
+                "b16145e5afe10abe"
+            ]
+        ]
+    },
+    {
+        "id": "b16145e5afe10abe",
+        "type": "function",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "func": "msg.payload = parseInt(msg.payload, 2);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 200,
+        "wires": [
+            [
+                "fdd2b0a00f835afa"
+            ]
+        ]
+    },
+    {
+        "id": "fdd2b0a00f835afa",
+        "type": "ui_led",
+        "z": "39abad88d6d2d7af",
+        "order": 2,
+        "group": "3bf86681ebf1d823",
+        "width": 0,
+        "height": 0,
+        "label": "Any input fault",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#808080",
+                "value": "0",
+                "valueType": "num"
+            },
+            {
+                "color": "#ff0000",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Any input fault",
+        "x": 1100,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "b83ed4c20753cadd",
+        "type": "string",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "methods": [
+            {
+                "name": "right",
+                "params": [
+                    {
+                        "type": "num",
+                        "value": "4"
+                    }
+                ]
+            },
+            {
+                "name": "left",
+                "params": [
+                    {
+                        "type": "num",
+                        "value": "1"
+                    }
+                ]
+            }
+        ],
+        "prop": "payload",
+        "propout": "payload",
+        "object": "msg",
+        "objectout": "msg",
+        "x": 750,
+        "y": 260,
+        "wires": [
+            [
+                "7994853dc1a8f50e"
+            ]
+        ]
+    },
+    {
+        "id": "7994853dc1a8f50e",
+        "type": "function",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "func": "msg.payload = parseInt(msg.payload, 2);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 260,
+        "wires": [
+            [
+                "f75126c1ca752968"
+            ]
+        ]
+    },
+    {
+        "id": "f75126c1ca752968",
+        "type": "ui_led",
+        "z": "39abad88d6d2d7af",
+        "order": 8,
+        "group": "3bf86681ebf1d823",
+        "width": 0,
+        "height": 0,
+        "label": "RO1 Status",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "0",
+                "valueType": "num"
+            },
+            {
+                "color": "#00ff00",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "RO1 Status",
+        "x": 1090,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "07a98c0a96df801d",
+        "type": "string",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "methods": [
+            {
+                "name": "right",
+                "params": [
+                    {
+                        "type": "num",
+                        "value": "5"
+                    }
+                ]
+            },
+            {
+                "name": "left",
+                "params": [
+                    {
+                        "type": "num",
+                        "value": "1"
+                    }
+                ]
+            }
+        ],
+        "prop": "payload",
+        "propout": "payload",
+        "object": "msg",
+        "objectout": "msg",
+        "x": 750,
+        "y": 320,
+        "wires": [
+            [
+                "fb837b498c60fcb7"
+            ]
+        ]
+    },
+    {
+        "id": "fb837b498c60fcb7",
+        "type": "function",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "func": "msg.payload = parseInt(msg.payload, 2);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 320,
+        "wires": [
+            [
+                "134c2485347e78ca"
+            ]
+        ]
+    },
+    {
+        "id": "134c2485347e78ca",
+        "type": "ui_led",
+        "z": "39abad88d6d2d7af",
+        "order": 7,
+        "group": "3bf86681ebf1d823",
+        "width": 0,
+        "height": 0,
+        "label": "RO2 Status",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "0",
+                "valueType": "num"
+            },
+            {
+                "color": "#00ff00",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "RO2 Status",
+        "x": 1090,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "47755d0a5598eb16",
+        "type": "string",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "methods": [
+            {
+                "name": "right",
+                "params": [
+                    {
+                        "type": "num",
+                        "value": "6"
+                    }
+                ]
+            },
+            {
+                "name": "left",
+                "params": [
+                    {
+                        "type": "num",
+                        "value": "1"
+                    }
+                ]
+            }
+        ],
+        "prop": "payload",
+        "propout": "payload",
+        "object": "msg",
+        "objectout": "msg",
+        "x": 750,
+        "y": 380,
+        "wires": [
+            [
+                "92c54546c7df30f7"
+            ]
+        ]
+    },
+    {
+        "id": "92c54546c7df30f7",
+        "type": "function",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "func": "msg.payload = parseInt(msg.payload, 2);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 380,
+        "wires": [
+            [
+                "cc6066667e29dc4e"
+            ]
+        ]
+    },
+    {
+        "id": "cc6066667e29dc4e",
+        "type": "ui_led",
+        "z": "39abad88d6d2d7af",
+        "order": 3,
+        "group": "3bf86681ebf1d823",
+        "width": 0,
+        "height": 0,
+        "label": "Magnetic Switch",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "0",
+                "valueType": "num"
+            },
+            {
+                "color": "#00ff00",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Magnetic Switch",
+        "x": 1100,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "bb465dfa4b26c9b4",
+        "type": "string",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "methods": [
+            {
+                "name": "right",
+                "params": [
+                    {
+                        "type": "num",
+                        "value": "7"
+                    }
+                ]
+            },
+            {
+                "name": "left",
+                "params": [
+                    {
+                        "type": "num",
+                        "value": "1"
+                    }
+                ]
+            }
+        ],
+        "prop": "payload",
+        "propout": "payload",
+        "object": "msg",
+        "objectout": "msg",
+        "x": 750,
+        "y": 440,
+        "wires": [
+            [
+                "90f10c8460cdfd7a"
+            ]
+        ]
+    },
+    {
+        "id": "90f10c8460cdfd7a",
+        "type": "function",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "func": "msg.payload = parseInt(msg.payload, 2);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 440,
+        "wires": [
+            [
+                "48719320f199b4d5"
+            ]
+        ]
+    },
+    {
+        "id": "48719320f199b4d5",
+        "type": "ui_led",
+        "z": "39abad88d6d2d7af",
+        "order": 4,
+        "group": "3bf86681ebf1d823",
+        "width": 0,
+        "height": 0,
+        "label": "Door Switch",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "0",
+                "valueType": "num"
+            },
+            {
+                "color": "#00ff00",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Door Switch",
+        "x": 1090,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "c9c11496e0ba6857",
+        "type": "string",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "methods": [
+            {
+                "name": "right",
+                "params": [
+                    {
+                        "type": "num",
+                        "value": "8"
+                    }
+                ]
+            },
+            {
+                "name": "left",
+                "params": [
+                    {
+                        "type": "num",
+                        "value": "1"
+                    }
+                ]
+            }
+        ],
+        "prop": "payload",
+        "propout": "payload",
+        "object": "msg",
+        "objectout": "msg",
+        "x": 750,
+        "y": 500,
+        "wires": [
+            [
+                "6bb2b97ab82a78d3"
+            ]
+        ]
+    },
+    {
+        "id": "6bb2b97ab82a78d3",
+        "type": "function",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "func": "msg.payload = parseInt(msg.payload, 2);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 500,
+        "wires": [
+            [
+                "7b548c2f190898bb"
+            ]
+        ]
+    },
+    {
+        "id": "7b548c2f190898bb",
+        "type": "ui_led",
+        "z": "39abad88d6d2d7af",
+        "order": 5,
+        "group": "3bf86681ebf1d823",
+        "width": 0,
+        "height": 0,
+        "label": "EM-Stop Switch",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "0",
+                "valueType": "num"
+            },
+            {
+                "color": "#00ff00",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "EM-Stop Switch",
+        "x": 1100,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "e85c781e80cd2252",
+        "type": "string",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "methods": [
+            {
+                "name": "right",
+                "params": [
+                    {
+                        "type": "num",
+                        "value": "9"
+                    }
+                ]
+            },
+            {
+                "name": "left",
+                "params": [
+                    {
+                        "type": "num",
+                        "value": "1"
+                    }
+                ]
+            }
+        ],
+        "prop": "payload",
+        "propout": "payload",
+        "object": "msg",
+        "objectout": "msg",
+        "x": 750,
+        "y": 560,
+        "wires": [
+            [
+                "37dbdc13fe998e90"
+            ]
+        ]
+    },
+    {
+        "id": "37dbdc13fe998e90",
+        "type": "function",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "func": "msg.payload = parseInt(msg.payload, 2);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 560,
+        "wires": [
+            [
+                "e34e6978407556a6"
+            ]
+        ]
+    },
+    {
+        "id": "e34e6978407556a6",
+        "type": "ui_led",
+        "z": "39abad88d6d2d7af",
+        "order": 7,
+        "group": "87d1bd12cd357b55",
+        "width": 0,
+        "height": 0,
+        "label": "Virtual Non Safety Input",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "0",
+                "valueType": "num"
+            },
+            {
+                "color": "#00ff00",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Virtual Non Safety Input",
+        "x": 1130,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "e5f8b55af6cc9a8b",
+        "type": "string",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "methods": [
+            {
+                "name": "right",
+                "params": [
+                    {
+                        "type": "num",
+                        "value": "10"
+                    }
+                ]
+            },
+            {
+                "name": "left",
+                "params": [
+                    {
+                        "type": "num",
+                        "value": "1"
+                    }
+                ]
+            }
+        ],
+        "prop": "payload",
+        "propout": "payload",
+        "object": "msg",
+        "objectout": "msg",
+        "x": 750,
+        "y": 620,
+        "wires": [
+            [
+                "5ad05698c6475aff"
+            ]
+        ]
+    },
+    {
+        "id": "5ad05698c6475aff",
+        "type": "function",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "func": "msg.payload = parseInt(msg.payload, 2);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 620,
+        "wires": [
+            [
+                "d431d34b6dd53c7d"
+            ]
+        ]
+    },
+    {
+        "id": "d431d34b6dd53c7d",
+        "type": "ui_led",
+        "z": "39abad88d6d2d7af",
+        "order": 3,
+        "group": "87d1bd12cd357b55",
+        "width": 0,
+        "height": 0,
+        "label": "Mute Enabled",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "0",
+                "valueType": "num"
+            },
+            {
+                "color": "#00ff00",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Mute Enable",
+        "x": 1090,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "9c1c8d04619c26ab",
+        "type": "string",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "methods": [
+            {
+                "name": "right",
+                "params": [
+                    {
+                        "type": "num",
+                        "value": "12"
+                    }
+                ]
+            },
+            {
+                "name": "left",
+                "params": [
+                    {
+                        "type": "num",
+                        "value": "1"
+                    }
+                ]
+            }
+        ],
+        "prop": "payload",
+        "propout": "payload",
+        "object": "msg",
+        "objectout": "msg",
+        "x": 750,
+        "y": 740,
+        "wires": [
+            [
+                "ce298aaca12eff8c"
+            ]
+        ]
+    },
+    {
+        "id": "ce298aaca12eff8c",
+        "type": "function",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "func": "msg.payload = parseInt(msg.payload, 2);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 740,
+        "wires": [
+            [
+                "5fba1785d5fe7e66"
+            ]
+        ]
+    },
+    {
+        "id": "5fba1785d5fe7e66",
+        "type": "ui_led",
+        "z": "39abad88d6d2d7af",
+        "order": 6,
+        "group": "3bf86681ebf1d823",
+        "width": 0,
+        "height": 0,
+        "label": "Reset required",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#00ff00",
+                "value": "0",
+                "valueType": "num"
+            },
+            {
+                "color": "#73c1fc",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Reset required",
+        "x": 1100,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "cbee67faa0515e29",
+        "type": "comment",
+        "z": "39abad88d6d2d7af",
+        "name": "Write to SC10 Controller",
+        "info": "",
+        "x": 190,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "996e1c877e3672a2",
+        "type": "modbus-write",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "Coil",
+        "adr": "3000",
+        "quantity": "1",
+        "server": "fa1735cc5b86496c",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 480,
+        "y": 840,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "3ca20a5437347b21",
+        "type": "ui_switch",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "label": "Bypass Magnetic Switch",
+        "tooltip": "",
+        "group": "87d1bd12cd357b55",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 190,
+        "y": 920,
+        "wires": [
+            [
+                "0abafa146a0e9c31"
+            ]
+        ]
+    },
+    {
+        "id": "0abafa146a0e9c31",
+        "type": "modbus-write",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "unitid": "1",
+        "dataType": "Coil",
+        "adr": "3001",
+        "quantity": "1",
+        "server": "fa1735cc5b86496c",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "x": 500,
+        "y": 920,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "a6a9043a87b562a2",
+        "type": "ui_button",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "group": "87d1bd12cd357b55",
+        "order": 5,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "EM-Stop Press",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "red",
+        "className": "",
+        "icon": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 160,
+        "y": 840,
+        "wires": [
+            [
+                "996e1c877e3672a2"
+            ]
+        ]
+    },
+    {
+        "id": "a4089a4c1b06e18f",
+        "type": "ui_button",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "group": "87d1bd12cd357b55",
+        "order": 6,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "EM-Stop Release",
+        "tooltip": "",
+        "color": "white",
+        "bgcolor": "green",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 170,
+        "y": 880,
+        "wires": [
+            [
+                "996e1c877e3672a2"
+            ]
+        ]
+    },
+    {
+        "id": "851b857ba3f5318b",
+        "type": "debug",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "fb327933862ea29c",
+        "type": "string",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "methods": [
+            {
+                "name": "right",
+                "params": [
+                    {
+                        "type": "num",
+                        "value": "11"
+                    }
+                ]
+            },
+            {
+                "name": "left",
+                "params": [
+                    {
+                        "type": "num",
+                        "value": "1"
+                    }
+                ]
+            }
+        ],
+        "prop": "payload",
+        "propout": "payload",
+        "object": "msg",
+        "objectout": "msg",
+        "x": 750,
+        "y": 680,
+        "wires": [
+            [
+                "9b89a554df9f23ac"
+            ]
+        ]
+    },
+    {
+        "id": "9b89a554df9f23ac",
+        "type": "function",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "func": "var x = parseInt(msg.payload, 2);\n\nif (x == 0)\n{\n    msg.payload = \"Magnetic switch is ACTIVE!\";\n    return msg;\n}\n\nif (x == 1)\n{\n    msg.payload = \"Magnetic switch is BYPASSED!\";\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 680,
+        "wires": [
+            [
+                "20ca7457b2176e0f"
+            ]
+        ]
+    },
+    {
+        "id": "20ca7457b2176e0f",
+        "type": "ui_text",
+        "z": "39abad88d6d2d7af",
+        "group": "87d1bd12cd357b55",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Magnetic Switch Status",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 1130,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "da8ecdefe7690c11",
+        "type": "debug",
+        "z": "39abad88d6d2d7af",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 300,
+        "wires": []
+    }
+]

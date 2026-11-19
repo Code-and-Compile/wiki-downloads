@@ -1,0 +1,371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BSCX MasterID="4" FormatID="2" DocumentVersion="16">
+    <Project>
+        <Property Type="ConfigurationName" Value="New Config" />
+        <Property Type="ProjectName" Value="New Project" />
+        <Property Type="Author" Value="" />
+        <Property Type="Note" Value="" />
+        <Property Type="CreationDate" Year="2022" Month="3" Day="6" Hour="13" Minute="32" Second="32" />
+        <Property Type="ProjectDate" Year="2022" Month="3" Day="6" Hour="13" Minute="32" Second="32" />
+        <Property Type="ProfinetEnabled" Value="False" />
+    </Project>
+    <Controller>
+        <Property Type="DisableTestPulse" Value="False" />
+        <Property Type="HasDisplay" Value="False" />
+        <Property Type="HasEthernet" Value="True" />
+        <Property Type="IsExpandable" Value="False" />
+    </Controller>
+    <Ethernet>
+        <Property Type="EthernetSettings" EthernetEnabled="True" IPAddress="192.168.0.128" SubnetMask="255.255.255.0" GatewayAddress="0.0.0.0" LinkOption="AutoNegotiate" IsQuickSetIPSet="False" />
+        <Property Type="ModbusSettings" SwapCharacterBytes="False" NumericalFormat32Bit="SendLSWThenMSW" />
+        <Property Type="EIPPCCCSettings" SwapCharacterBytes="False" NumericalFormat32Bit="SendLSWThenMSW" StringLengthType="Length32Bit" />
+        <Property Type="ActuationCode" Value="0" />
+        <Property Type="NetworkTimeout" Enabled="False" Value="5000" />
+    </Ethernet>
+    <BitIndexer RequiredSizeBytes="32" OffsetToInputs="0" OffsetToFunctionBlocks="192" OffsetToSafetyOutputs="8" MaximumBitIndex="255" />
+    <AddOnModules Count="0" />
+    <Inputs Count="4">
+        <Entry Type="GateSwitch" Module="0" BitIndex="1">
+            <Property Type="Name" Value="MagSwitch" />
+            <Property Type="ModuleSelection" Value="0" />
+            <Property Type="Circuit" CircuitType="Complimentary3Terminal" TerminalCount="3">
+                <Terminal Value="IO1" />
+                <Terminal Value="IN1" />
+                <Terminal Value="IN2" />
+            </Property>
+            <Property Type="Simulteneity" Value="Simultaneous" />
+            <Property Type="DebounceClosedToOpenTimeLimit" Value="6" />
+            <Property Type="DebounceOpenToClosedTimeLimit" Value="50" />
+            <Property Type="EnableStartupTest" Value="False" />
+            <Property Type="OutputNode:Primary" Count="1" />
+            <Property Type="MasterLocation" Page="0" Row="1" Column="0" />
+        </Entry>
+        <Entry Type="ISDDevice" Module="0" BitIndex="2">
+            <Property Type="Name" Value="ISD1DoorSw" />
+            <Property Type="ModuleSelection" Value="0" />
+            <Property Type="Circuit" CircuitType="Isd2Terminal" TerminalCount="2">
+                <Terminal Value="IN5" />
+                <Terminal Value="IN6" />
+            </Property>
+            <Property Type="DebounceClosedToOpenTimeLimit" Value="6" />
+            <Property Type="DebounceOpenToClosedTimeLimit" Value="50" />
+            <Property Type="ISDChannel" Index="1" Count="2">
+                <ISDSensor Name="DoorSw U" Type="DOOR_SWITCH" />
+                <ISDSensor Name="DoorSw L" Type="DOOR_SWITCH" />
+            </Property>
+            <Property Type="OutputNode:Primary" Count="1" />
+            <Property Type="MasterLocation" Page="0" Row="5" Column="0" />
+        </Entry>
+        <Entry Type="ISDDevice" Module="0" BitIndex="3">
+            <Property Type="Name" Value="ISD1E-Stop" />
+            <Property Type="ModuleSelection" Value="0" />
+            <Property Type="Circuit" CircuitType="Isd2Terminal" TerminalCount="2">
+                <Terminal Value="IN3" />
+                <Terminal Value="IN4" />
+            </Property>
+            <Property Type="DebounceClosedToOpenTimeLimit" Value="6" />
+            <Property Type="DebounceOpenToClosedTimeLimit" Value="50" />
+            <Property Type="ISDChannel" Index="2" Count="1">
+                <ISDSensor Name="EM-Stop" Type="E_STOP" />
+            </Property>
+            <Property Type="OutputNode:Primary" Count="1" />
+            <Property Type="MasterLocation" Page="0" Row="10" Column="0" />
+        </Entry>
+        <Entry Type="ManualReset" Module="0" BitIndex="4">
+            <Property Type="Name" Value="MR1" />
+            <Property Type="ModuleSelection" Value="0" />
+            <Property Type="Circuit" CircuitType="SingleChannel1Terminal" TerminalCount="1">
+                <Terminal Value="IO4" />
+            </Property>
+            <Property Type="MonitoredReset" Value="True" />
+            <Property Type="ResetOptions" Count="0" />
+            <Property Type="OutputNode:Primary" Count="2" />
+            <Property Type="MasterLocation" Page="0" Row="8" Column="0" />
+        </Entry>
+    </Inputs>
+    <VirtualNonSafetyInputs Count="2">
+        <Entry Type="VirtualOnOff" BitIndex="5">
+            <Property Type="Name" Value="VON1-EMS" />
+            <Property Type="OutputNode:Primary" Count="2" />
+            <Property Type="VirtualInputBitIndex" Value="0" />
+            <Property Type="MasterLocation" Page="0" Row="7" Column="0" />
+        </Entry>
+        <Entry Type="VirtualMuteEnable" BitIndex="6">
+            <Property Type="Name" Value="VME1" />
+            <Property Type="OutputNode:Primary" Count="1" />
+            <Property Type="VirtualInputBitIndex" Value="1" />
+            <Property Type="MasterLocation" Page="0" Row="2" Column="0" />
+        </Entry>
+    </VirtualNonSafetyInputs>
+    <FunctionBlocks Count="5">
+        <Entry Type="Bypass" BitIndex="192">
+            <Property Type="Name" Value="B1" />
+            <Property Type="BypassTimeLimit" Value="61000" />
+            <Property Type="InputActiveLockout" Value="True" />
+            <Property Type="InputNode:Primary" Count="1" EnabledSources="1">
+                <Node Value="MagSwitch" Type="OutputNode:Primary" BitIndex="1" SourceIndex="0" />
+            </Property>
+            <Property Type="InputNode:Bypass" Count="1" EnabledSources="1">
+                <Node Value="VME1" Type="OutputNode:Primary" BitIndex="6" SourceIndex="0" />
+            </Property>
+            <Property Type="OutputNode:Primary" Count="1" />
+            <Property Type="MasterLocation" Page="0" Row="0" Column="1" />
+        </Entry>
+        <Entry Type="And" BitIndex="193">
+            <Property Type="Name" Value="A1" />
+            <Property Type="InputNode:Primary" Count="3" EnabledSources="3">
+                <Node Value="B1" Type="OutputNode:Primary" BitIndex="192" SourceIndex="0" Polarity="Normal" />
+                <Node Value="ISD1DoorSw" Type="OutputNode:Primary" BitIndex="2" SourceIndex="1" Polarity="Normal" />
+                <Node Value="VON1-EMS" Type="OutputNode:Primary" BitIndex="5" SourceIndex="2" Polarity="Normal" />
+            </Property>
+            <Property Type="OutputNode:Primary" Count="1" Polarity="Normal" />
+            <Property Type="MasterLocation" Page="0" Row="4" Column="2" />
+        </Entry>
+        <Entry Type="LatchReset" BitIndex="194">
+            <Property Type="Name" Value="LR1" />
+            <Property Type="PowerUpMode" Value="Normal" />
+            <Property Type="InputNode:Primary" Count="1" EnabledSources="1">
+                <Node Value="A1" Type="OutputNode:Primary" BitIndex="193" SourceIndex="0" />
+            </Property>
+            <Property Type="InputNode:LatchReset" Count="1" EnabledSources="1">
+                <Node Value="MR1" Type="OutputNode:Primary" BitIndex="4" SourceIndex="0" />
+            </Property>
+            <Property Type="InputNode:ResetEnable" Count="0" EnabledSources="1" Visibility="Collapsed">
+                <Node Value="" Type="" BitIndex="1" SourceIndex="0" />
+            </Property>
+            <Property Type="OutputNode:Primary" Count="1" />
+            <Property Type="MasterLocation" Page="0" Row="4" Column="3" />
+        </Entry>
+        <Entry Type="And" BitIndex="195">
+            <Property Type="Name" Value="A2" />
+            <Property Type="InputNode:Primary" Count="2" EnabledSources="2">
+                <Node Value="VON1-EMS" Type="OutputNode:Primary" BitIndex="5" SourceIndex="0" Polarity="Normal" />
+                <Node Value="ISD1E-Stop" Type="OutputNode:Primary" BitIndex="3" SourceIndex="1" Polarity="Normal" />
+            </Property>
+            <Property Type="OutputNode:Primary" Count="1" Polarity="Normal" />
+            <Property Type="MasterLocation" Page="0" Row="8" Column="1" />
+        </Entry>
+        <Entry Type="LatchReset" BitIndex="196">
+            <Property Type="Name" Value="LR2" />
+            <Property Type="PowerUpMode" Value="Normal" />
+            <Property Type="InputNode:Primary" Count="1" EnabledSources="1">
+                <Node Value="A2" Type="OutputNode:Primary" BitIndex="195" SourceIndex="0" />
+            </Property>
+            <Property Type="InputNode:LatchReset" Count="1" EnabledSources="1">
+                <Node Value="MR1" Type="OutputNode:Primary" BitIndex="4" SourceIndex="0" />
+            </Property>
+            <Property Type="InputNode:ResetEnable" Count="0" EnabledSources="1" Visibility="Collapsed">
+                <Node Value="" Type="" BitIndex="1" SourceIndex="0" />
+            </Property>
+            <Property Type="OutputNode:Primary" Count="1" />
+            <Property Type="MasterLocation" Page="0" Row="8" Column="2" />
+        </Entry>
+    </FunctionBlocks>
+    <SafetyOutputs Count="2">
+        <Entry Type="Relay" Module="0" BitIndex="8" Enabled="True">
+            <Property Type="Name" Value="RO1" />
+            <Property Type="ModuleSelection" Value="0" />
+            <Property Type="Circuit" CircuitType="RO1_SC10" TerminalCount="6">
+                <Terminal Value="13" />
+                <Terminal Value="14" />
+                <Terminal Value="23" />
+                <Terminal Value="24" />
+                <Terminal Value="33" />
+                <Terminal Value="34" />
+            </Property>
+            <Property Type="SafetyOutputDelay" DelayType="None" DelayTime="100" OffDelayCancelType="DoNotCancel" OffDelayEndLogicType="TurnOff" />
+            <Property Type="LinkToSafetyOutputSelection" Value="NotUsed" BitIndex="0" />
+            <Property Type="PowerUpMode" Value="Normal" />
+            <Property Type="InputNode:Primary" Count="1" EnabledSources="1">
+                <Node Value="LR1" Type="OutputNode:Primary" BitIndex="194" SourceIndex="0" />
+            </Property>
+            <Property Type="InputNode:EDM" Count="0" EnabledSources="1" Visibility="Collapsed">
+                <Node Value="" Type="" BitIndex="1" SourceIndex="0" />
+            </Property>
+            <Property Type="InputNode:AVM" Count="0" EnabledSources="1" Visibility="Collapsed">
+                <Node Value="" Type="" BitIndex="1" SourceIndex="0" MonitoringTimeLimit="50" />
+            </Property>
+            <Property Type="InputNode:ResetEnable" Count="0" EnabledSources="1" Visibility="Collapsed">
+                <Node Value="" Type="" BitIndex="1" SourceIndex="0" />
+            </Property>
+            <Property Type="InputNode:CancelDelay" Count="0" EnabledSources="1" Visibility="Collapsed">
+                <Node Value="" Type="" BitIndex="1" SourceIndex="0" />
+            </Property>
+            <Property Type="InputNode:LatchReset" Count="0" EnabledSources="1" Visibility="Collapsed">
+                <Node Value="" Type="" BitIndex="1" SourceIndex="0" />
+            </Property>
+            <Property Type="InputNode:FaultReset" Count="0" EnabledSources="1" Visibility="Collapsed">
+                <Node Value="" Type="" BitIndex="1" SourceIndex="0" />
+            </Property>
+            <Property Type="OutputNode:Primary" Count="0" />
+            <Property Type="MasterLocation" Page="0" Row="0" Column="6" />
+        </Entry>
+        <Entry Type="Relay" Module="0" BitIndex="9" Enabled="True">
+            <Property Type="Name" Value="RO2" />
+            <Property Type="ModuleSelection" Value="0" />
+            <Property Type="Circuit" CircuitType="RO2_SC10" TerminalCount="6">
+                <Terminal Value="43" />
+                <Terminal Value="44" />
+                <Terminal Value="53" />
+                <Terminal Value="54" />
+                <Terminal Value="63" />
+                <Terminal Value="64" />
+            </Property>
+            <Property Type="SafetyOutputDelay" DelayType="None" DelayTime="100" OffDelayCancelType="DoNotCancel" OffDelayEndLogicType="TurnOff" />
+            <Property Type="LinkToSafetyOutputSelection" Value="NotUsed" BitIndex="0" />
+            <Property Type="PowerUpMode" Value="Normal" />
+            <Property Type="InputNode:Primary" Count="1" EnabledSources="1">
+                <Node Value="LR2" Type="OutputNode:Primary" BitIndex="196" SourceIndex="0" />
+            </Property>
+            <Property Type="InputNode:EDM" Count="0" EnabledSources="1" Visibility="Collapsed">
+                <Node Value="" Type="" BitIndex="1" SourceIndex="0" />
+            </Property>
+            <Property Type="InputNode:AVM" Count="0" EnabledSources="1" Visibility="Collapsed">
+                <Node Value="" Type="" BitIndex="1" SourceIndex="0" MonitoringTimeLimit="50" />
+            </Property>
+            <Property Type="InputNode:ResetEnable" Count="0" EnabledSources="1" Visibility="Collapsed">
+                <Node Value="" Type="" BitIndex="1" SourceIndex="0" />
+            </Property>
+            <Property Type="InputNode:CancelDelay" Count="0" EnabledSources="1" Visibility="Collapsed">
+                <Node Value="" Type="" BitIndex="1" SourceIndex="0" />
+            </Property>
+            <Property Type="InputNode:LatchReset" Count="0" EnabledSources="1" Visibility="Collapsed">
+                <Node Value="" Type="" BitIndex="1" SourceIndex="0" />
+            </Property>
+            <Property Type="InputNode:FaultReset" Count="0" EnabledSources="1" Visibility="Collapsed">
+                <Node Value="" Type="" BitIndex="1" SourceIndex="0" />
+            </Property>
+            <Property Type="OutputNode:Primary" Count="0" />
+            <Property Type="MasterLocation" Page="0" Row="8" Column="6" />
+        </Entry>
+    </SafetyOutputs>
+    <StatusOutputs Count="2">
+        <Entry Type="WaitingForManualReset" Module="0">
+            <Property Type="Name" Value="Reset" />
+            <Property Type="ModuleSelection" Value="0" />
+            <Property Type="Circuit" CircuitType="StatusOutput" TerminalCount="1">
+                <Terminal Value="IO3" />
+            </Property>
+            <Property Type="ManualResetSelection" Value="MR1" BitIndex="4" />
+            <Property Type="SignalConvention" Value="24VDC" />
+        </Entry>
+        <Entry Type="TrackInputFaultAll" Module="0">
+            <Property Type="Name" Value="Fault" />
+            <Property Type="ModuleSelection" Value="0" />
+            <Property Type="Circuit" CircuitType="StatusOutput" TerminalCount="1">
+                <Terminal Value="IO2" />
+            </Property>
+            <Property Type="SignalConvention" Value="24VDC" />
+        </Entry>
+    </StatusOutputs>
+    <VirtualStatusOutputs Count="12">
+        <Entry Type="SystemLockout">
+            <Property Type="ProfinetLocation" Group="1" Index="0" />
+            <Property Type="VirtualStatusOutputNumber" Value="0" />
+        </Entry>
+        <Entry Type="TrackInputFaultAll">
+            <Property Type="ProfinetLocation" Group="1" Index="1" />
+            <Property Type="VirtualStatusOutputNumber" Value="1" />
+        </Entry>
+        <Entry Type="TrackOutputFaultAll">
+            <Property Type="ProfinetLocation" Group="1" Index="2" />
+            <Property Type="VirtualStatusOutputNumber" Value="2" />
+        </Entry>
+        <Entry Type="TrackOutput">
+            <Property Type="ProfinetLocation" Group="3" Index="0" />
+            <Property Type="VirtualStatusOutputNumber" Value="3" />
+            <Property Type="SafetyOutputSelection" Value="RO1" BitIndex="8" />
+        </Entry>
+        <Entry Type="TrackOutput">
+            <Property Type="ProfinetLocation" Group="3" Index="1" />
+            <Property Type="VirtualStatusOutputNumber" Value="4" />
+            <Property Type="SafetyOutputSelection" Value="RO2" BitIndex="9" />
+        </Entry>
+        <Entry Type="TrackInput">
+            <Property Type="ProfinetLocation" Group="2" Index="0" />
+            <Property Type="VirtualStatusOutputNumber" Value="5" />
+            <Property Type="InputSelection" Value="MagSwitch" BitIndex="1" />
+        </Entry>
+        <Entry Type="TrackInput">
+            <Property Type="ProfinetLocation" Group="2" Index="1" />
+            <Property Type="VirtualStatusOutputNumber" Value="6" />
+            <Property Type="InputSelection" Value="ISD1DoorSw" BitIndex="2" />
+        </Entry>
+        <Entry Type="TrackInput">
+            <Property Type="ProfinetLocation" Group="2" Index="2" />
+            <Property Type="VirtualStatusOutputNumber" Value="7" />
+            <Property Type="InputSelection" Value="ISD1E-Stop" BitIndex="3" />
+        </Entry>
+        <Entry Type="TrackInput">
+            <Property Type="ProfinetLocation" Group="2" Index="3" />
+            <Property Type="VirtualStatusOutputNumber" Value="8" />
+            <Property Type="InputSelection" Value="VON1-EMS" BitIndex="5" />
+        </Entry>
+        <Entry Type="TrackInput">
+            <Property Type="ProfinetLocation" Group="2" Index="4" />
+            <Property Type="VirtualStatusOutputNumber" Value="9" />
+            <Property Type="InputSelection" Value="VME1" BitIndex="6" />
+        </Entry>
+        <Entry Type="Bypass">
+            <Property Type="ProfinetLocation" Group="0" Index="0" />
+            <Property Type="VirtualStatusOutputNumber" Value="10" />
+            <Property Type="BypassBlockSelection" Value="B1" BitIndex="192" />
+        </Entry>
+        <Entry Type="WaitingForManualReset">
+            <Property Type="ProfinetLocation" Group="0" Index="1" />
+            <Property Type="VirtualStatusOutputNumber" Value="11" />
+            <Property Type="ManualResetSelection" Value="MR1" BitIndex="4" />
+        </Entry>
+    </VirtualStatusOutputs>
+    <VirtualStatusOutputColumns Count="0" />
+    <ISDInputs Count="3" Auto="0" Reversed="0">
+        <Entry Index="1" Type="DOOR_SWITCH" Name="DoorSw U" />
+        <Entry Index="1" Type="DOOR_SWITCH" Name="DoorSw L" />
+        <Entry Index="2" Type="E_STOP" Name="EM-Stop" />
+    </ISDInputs>
+    <ExecutionGroups Count="1">
+        <Group Count="7">
+            <Entry BitIndex="192" Name="B1" />
+            <Entry BitIndex="193" Name="A1" />
+            <Entry BitIndex="194" Name="LR1" />
+            <Entry BitIndex="8" Name="M0:RO1" />
+            <Entry BitIndex="195" Name="A2" />
+            <Entry BitIndex="196" Name="LR2" />
+            <Entry BitIndex="9" Name="M0:RO2" />
+        </Group>
+    </ExecutionGroups>
+    <FunctionalPages Count="1">
+        <Page Number="0" Entries="13">
+            <Entry Type="Master" Row="0" Column="1" BitIndex="192" Value="B1" />
+            <Entry Type="Master" Row="0" Column="6" BitIndex="8" Value="RO1" />
+            <Entry Type="Master" Row="1" Column="0" BitIndex="1" Value="MagSwitch" />
+            <Entry Type="Master" Row="2" Column="0" BitIndex="6" Value="VME1" />
+            <Entry Type="Master" Row="4" Column="2" BitIndex="193" Value="A1" />
+            <Entry Type="Master" Row="4" Column="3" BitIndex="194" Value="LR1" />
+            <Entry Type="Master" Row="5" Column="0" BitIndex="2" Value="ISD1DoorSw" />
+            <Entry Type="Master" Row="7" Column="0" BitIndex="5" Value="VON1-EMS" />
+            <Entry Type="Master" Row="8" Column="0" BitIndex="4" Value="MR1" />
+            <Entry Type="Master" Row="8" Column="1" BitIndex="195" Value="A2" />
+            <Entry Type="Master" Row="8" Column="2" BitIndex="196" Value="LR2" />
+            <Entry Type="Master" Row="8" Column="6" BitIndex="9" Value="RO2" />
+            <Entry Type="Master" Row="10" Column="0" BitIndex="3" Value="ISD1E-Stop" />
+        </Page>
+    </FunctionalPages>
+    <Diagnostics>
+        <BitIndexer>
+            <Entry BitIndex="1" Name="MagSwitch" />
+            <Entry BitIndex="2" Name="ISD1DoorSw" />
+            <Entry BitIndex="3" Name="ISD1E-Stop" />
+            <Entry BitIndex="4" Name="MR1" />
+            <Entry BitIndex="5" Name="VON1-EMS" />
+            <Entry BitIndex="6" Name="VME1" />
+            <Entry BitIndex="8" Name="RO1" />
+            <Entry BitIndex="9" Name="RO2" />
+            <Entry BitIndex="192" Name="B1" />
+            <Entry BitIndex="193" Name="A1" />
+            <Entry BitIndex="194" Name="LR1" />
+            <Entry BitIndex="195" Name="A2" />
+            <Entry BitIndex="196" Name="LR2" />
+        </BitIndexer>
+    </Diagnostics>
+</BSCX>
